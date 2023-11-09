@@ -28,14 +28,11 @@ export const WEEK = Object.freeze({
 });
 
 export const SPECIAL_DAY = [3, 10, 17, 24, 25, 31];
-
-export const MENU_NAME = ['appetizer', 'main', 'dessert', 'drink'];
-
+고;
 export const GIFT_ITEM = {
   name: '샴페인',
   price: 25000,
 };
-
 export const MENU = Object.freeze({
   appetizer: [
     { name: '양송이수프', price: 6000 },
@@ -54,3 +51,10 @@ export const MENU = Object.freeze({
   ],
   drink: [{ name: '제로콜라', price: 3000 }, { name: '레드와인', price: 60000 }, GIFT_ITEM],
 });
+
+export const MENU_NAME = Object.keys(MENU);
+
+export const APPETIZER_NAME = MENU.appetizer.map((food) => food.name);
+export const MAIN_NAME = MENU.main.map((food) => food.name);
+export const DESSERT_NAME = MENU.dessert.map((food) => food.name);
+export const DRINK_NAME = MENU.drink.map((food) => food.name);
