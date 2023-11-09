@@ -10,6 +10,7 @@ class Discount {
   apply(purchaseList, day) {
     this.#applyChristmasEvent(day);
     this.#applyWeekDayEvent(purchaseList);
+    this.#applyWeekendEvent(purchaseList);
   }
 
   #applyChristmasEvent(day) {
@@ -25,9 +26,17 @@ class Discount {
     }
   }
 
+  #applyWeekendEvent(purchaseList) {
+    const mainCount = purchaseList.main.reduce((sum, cnt) => sum + cnt, 0);
+    if (mainCount > 0) {
+      this.#amount += DISCOUNT_AMOUNT.week * mainCount;
+    }
+  }
+
   getAmount() {
     return this.#amount;
   }
 }
 
 export default Discount;
+말;
