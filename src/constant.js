@@ -15,6 +15,18 @@ export const PERIOD = Object.freeze({
   },
 });
 
+export const WEEK = Object.freeze({
+  sunday: 0,
+  monday: 1,
+  tuesday: 2,
+  wednesday: 3,
+  thursday: 4,
+  friday: 5,
+  saturday: 6,
+});
+
+export const SPECIAL_DAY = [3, 10, 17, 24, 25, 31];
+
 export const MENU = Object.freeze({
   appetizer: [
     { name: '양송이수프', price: 6000 },

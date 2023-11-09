@@ -1,4 +1,4 @@
-import { DISCOUNT_AMOUNT, PERIOD } from '../constant.js';
+import { DISCOUNT_AMOUNT, PERIOD, WEEK } from '../constant.js';
 
 class Discount {
   #amount;
@@ -8,9 +8,15 @@ class Discount {
   }
 
   apply(purchaseList, day) {
+    const dayOfWeek = this.getDayOfWeek(day);
+
     this.#applyChristmasEvent(day);
-    this.#applyWeekDayEvent(purchaseList);
-    this.#applyWeekendEvent(purchaseList);
+    if (dayOfWeek >= WEEK.sunday && dayOfWeek <= WEEK.thursday) {
+      this.#applyWeekDayEvent(purchaseList);
+    }
+    if (dayOfWeek === WEEK.friday || dayOfWeek === WEEK.saturday) {
+      this.#applyWeekendEvent(purchaseList);
+    }
   }
 
   #applyChristmasEvent(day) {
@@ -31,6 +37,10 @@ class Discount {
     if (mainCount > 0) {
       this.#amount += DISCOUNT_AMOUNT.week * mainCount;
     }
+  }
+
+  getDayOfWeek(day) {
+    return new Date(`2023-12-${day}`).getDay();
   }
 
   getAmount() {
