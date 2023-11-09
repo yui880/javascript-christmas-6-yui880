@@ -2,6 +2,7 @@ export const DISCOUNT_AMOUNT = Object.freeze({
   base: 1000,
   addition: 100,
   week: 2023,
+  minimum: 10000,
 });
 
 export const PERIOD = Object.freeze({
