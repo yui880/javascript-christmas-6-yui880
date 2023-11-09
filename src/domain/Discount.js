@@ -1,10 +1,11 @@
 import { DISCOUNT_AMOUNT, PERIOD, SPECIAL_DAY, WEEK } from '../constant.js';
+import { DISCOUNT_STANDARD, PERIOD, SPECIAL_DAY, WEEK } from '../constant.js';
 
 class Discount {
-  #list;
+  #amountList;
 
   constructor() {
-    this.#list = {
+    this.#amountList = {
       christmas: 0,
       weekDay: 0,
       weekend: 0,
@@ -13,7 +14,7 @@ class Discount {
   }
 
   apply(totalAmount, purchaseList, day) {
-    if (totalAmount < DISCOUNT_AMOUNT.minimum) return;
+    if (totalAmount < DISCOUNT_STANDARD.minimum) return;
 
     const dayOfWeek = this.getDayOfWeek(day);
 
@@ -25,7 +26,7 @@ class Discount {
 
   #applyChristmasEvent(day) {
     if (day >= PERIOD.christmas.start && day <= PERIOD.christmas.end) {
-      this.#list.christmas += DISCOUNT_AMOUNT.base + DISCOUNT_AMOUNT.addition * (day - 1);
+      this.#amountList.christmas += DISCOUNT_STANDARD.base + DISCOUNT_STANDARD.addition * (day - 1);
     }
   }
 
@@ -34,7 +35,7 @@ class Discount {
       const dessertCount = purchaseList.dessert.reduce((sum, cnt) => sum + cnt, 0);
 
       if (dessertCount > 0) {
-        this.#list.weekDay += DISCOUNT_AMOUNT.week * dessertCount;
+        this.#amountList.weekDay += DISCOUNT_STANDARD.week * dessertCount;
       }
     }
   }
@@ -44,14 +45,14 @@ class Discount {
       const mainCount = purchaseList.main.reduce((sum, cnt) => sum + cnt, 0);
 
       if (mainCount > 0) {
-        this.#list.weekend += DISCOUNT_AMOUNT.week * mainCount;
+        this.#amountList.weekend += DISCOUNT_STANDARD.week * mainCount;
       }
     }
   }
 
   #applySpecialEvent(day) {
     if (SPECIAL_DAY.includes(day)) {
-      this.#list.special += 1000;
+      this.#amountList.special += 1000;
     }
   }
 
@@ -60,8 +61,11 @@ class Discount {
   }
 
   getAmount() {
-    return Object.values(this.#list).reduce((sum, item) => sum + item);
+    return Object.values(this.#amountList).reduce((sum, item) => sum + item);
   }
 }
 
+// const discount = new Discount();
+// discount.apply(30000, { dessert: [0, 0, 1], main: [1, 1, 1, 1] }, 1);
+// Console.print(discount.getAmount());
 export default Discount;
