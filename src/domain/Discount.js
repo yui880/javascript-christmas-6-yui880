@@ -1,4 +1,4 @@
-import { MONEY, PERIOD } from '../constant.js';
+import { DISCOUNT_AMOUNT, PERIOD } from '../constant.js';
 
 class Discount {
   #amount;
@@ -7,13 +7,21 @@ class Discount {
     this.#amount = 0;
   }
 
-  apply(purchaseAmount, day) {
+  apply(purchaseList, day) {
     this.#applyChristmasEvent(day);
+    this.#applyWeekDayEvent(purchaseList);
   }
 
   #applyChristmasEvent(day) {
     if (day >= PERIOD.christmas.start && day <= PERIOD.christmas.end) {
-      this.#amount += MONEY.base + MONEY.addition * (day - 1);
+      this.#amount += DISCOUNT_AMOUNT.base + DISCOUNT_AMOUNT.addition * (day - 1);
+    }
+  }
+
+  #applyWeekDayEvent(purchaseList) {
+    const dessertCount = purchaseList.dessert.reduce((sum, cnt) => sum + cnt, 0);
+    if (dessertCount > 0) {
+      this.#amount += DISCOUNT_AMOUNT.week * dessertCount;
     }
   }
 

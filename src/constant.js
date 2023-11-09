@@ -1,6 +1,7 @@
-export const MONEY = Object.freeze({
+export const DISCOUNT_AMOUNT = Object.freeze({
   base: 1000,
   addition: 100,
+  week: 2023,
 });
 
 export const PERIOD = Object.freeze({
