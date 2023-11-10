@@ -23,10 +23,19 @@ const Validator = {
       throw new ValidationError(ERROR.invalidMenu);
     }
   },
+
   checkHasDuplicate(names) {
     if (names.length !== new Set(names).size) {
       throw new ValidationError(ERROR.invalidMenu);
     }
+  },
+
+  checkIsNumber(counts) {
+    counts.forEach((count) => {
+      if (Number.isNaN(Number(count)) || count === '') {
+        throw new ValidationError(ERROR.invalidMenu);
+      }
+    });
   },
 };
 
