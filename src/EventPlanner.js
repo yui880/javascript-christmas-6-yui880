@@ -22,8 +22,17 @@ class EventPlanner {
     OutputView.printTotalAmount(this.#product.getAmount());
     this.#promotion.conductEvent(this.#product, visitDate);
 
+    this.#printEventResult();
+  }
+
+  #printEventResult() {
     const { discountList, giftAmount } = this.#promotion.getEventResult();
     OutputView.printGift(giftAmount);
+    OutputView.printDiscountList(discountList, giftAmount);
+
+    const discountAmount = this.#promotion.getTotalDiscountAmount();
+    OutputView.printTotalDiscount(discountAmount + giftAmount);
+    OutputView.printAfterDiscount(this.#product.getAmount() - discountAmount);
   }
 
   async handleException(callback) {

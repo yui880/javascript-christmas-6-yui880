@@ -44,6 +44,16 @@ const OutputView = {
     }
   },
 
+  printTotalDiscount(amount) {
+    Console.print(TITLE.totalBenefit);
+    Console.print(`-${this.formatNumber(amount)}${COUNT_UNIT.money}`);
+  },
+
+  printAfterDiscount(amount) {
+    Console.print(TITLE.afterDiscount);
+    Console.print(`${this.formatNumber(amount)}${COUNT_UNIT.money}`);
+  },
+
   printError(message) {
     Console.print(message);
   },

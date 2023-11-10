@@ -24,10 +24,7 @@ class Promotion {
   }
 
   getTotalDiscountAmount() {
-    const discountAmount = this.#discount.getAmount();
-    const giftAmount = this.#gift.getAmount();
-
-    return { discountAmount, giftAmount };
+    return this.#discount.getAmount();
   }
 }
 
