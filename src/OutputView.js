@@ -41,16 +41,19 @@ const OutputView = {
     }
     const eventNames = Object.values(EVENT);
     discountAmount.forEach((amount, index) => {
-      if (amount > 0) Console.print(`${eventNames[index]} -${amount}${COUNT_UNIT.money}`);
+      if (amount > 0)
+        Console.print(`${eventNames[index]} ${this.formatNumber(-amount)}${COUNT_UNIT.money}`);
     });
     if (giftAmount > 0) {
-      Console.print(`${eventNames[eventNames.length - 1]} -${giftAmount}${COUNT_UNIT.money}`);
+      Console.print(
+        `${eventNames[eventNames.length - 1]} ${this.formatNumber(-giftAmount)}${COUNT_UNIT.money}`,
+      );
     }
   },
 
   printTotalDiscount(amount) {
     Console.print(TITLE.totalBenefit);
-    Console.print(`-${this.formatNumber(amount)}${COUNT_UNIT.money}`);
+    Console.print(`${this.formatNumber(-amount)}${COUNT_UNIT.money}`);
   },
 
   printAfterDiscount(amount) {
@@ -70,7 +73,7 @@ const OutputView = {
   formatNumber(number) {
     const numberString = String(number);
 
-    return numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return numberString.replace(REGEX.ThousandSeparator, ',');
   },
 };
 

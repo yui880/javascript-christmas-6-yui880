@@ -1,4 +1,3 @@
-import { DISCOUNT_AMOUNT, PERIOD, SPECIAL_DAY, WEEK } from '../constant.js';
 import { DISCOUNT_STANDARD, PERIOD, SPECIAL_DAY, WEEK } from '../constant.js';
 
 class Discount {
@@ -69,7 +68,4 @@ class Discount {
   }
 }
 
-// const discount = new Discount();
-// discount.apply(30000, { dessert: [0, 0, 1], main: [1, 1, 1, 1] }, 1);
-// Console.print(discount.getAmount());
 export default Discount;
