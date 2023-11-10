@@ -33,6 +33,9 @@ class EventPlanner {
     const discountAmount = this.#promotion.getTotalDiscountAmount();
     OutputView.printTotalDiscount(discountAmount + giftAmount);
     OutputView.printAfterDiscount(this.#product.getAmount() - discountAmount);
+
+    const badge = this.#promotion.getBadge();
+    OutputView.printBadge(badge);
   }
 
   async handleException(callback) {

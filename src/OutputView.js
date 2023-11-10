@@ -54,6 +54,11 @@ const OutputView = {
     Console.print(`${this.formatNumber(amount)}${COUNT_UNIT.money}`);
   },
 
+  printBadge(badge) {
+    Console.print(TITLE.badge);
+    Console.print(badge);
+  },
+
   printError(message) {
     Console.print(message);
   },

@@ -97,3 +97,9 @@ export const COUNT_UNIT = {
   money: '원',
   empty: '없음',
 };
+
+export const BADGE = {
+  star: { name: '별', amount: 5000 },
+  tree: { name: '트리', amount: 10000 },
+  santa: { name: '별', amount: 5000 },
+};
