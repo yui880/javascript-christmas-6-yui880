@@ -51,7 +51,7 @@ class Discount {
   }
 
   #applySpecialEvent(day) {
-    if (SPECIAL_DAY.includes(day)) {
+    if (SPECIAL_DAY.includes(Number(day))) {
       this.#amountList.special += 1000;
     }
   }
@@ -62,6 +62,10 @@ class Discount {
 
   getAmount() {
     return Object.values(this.#amountList).reduce((sum, item) => sum + item);
+  }
+
+  getAmountList() {
+    return this.#amountList;
   }
 }
 

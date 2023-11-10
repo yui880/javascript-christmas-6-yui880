@@ -59,7 +59,6 @@ class Product {
   }
 
   getQuantity() {
-    Console.print(this.#quantity);
     return this.#quantity;
   }
 

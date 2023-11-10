@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { COUNT_UNIT, TITLE, GIFT_ITEM } from './constant.js';
+import { COUNT_UNIT, TITLE, GIFT_ITEM, EVENT } from './constant.js';
 
 const OutputView = {
   printDescription(message) {
@@ -27,6 +27,23 @@ const OutputView = {
     }
     Console.print(`${COUNT_UNIT.empty}`);
   },
+
+  printDiscountList(discountList, giftAmount) {
+    Console.print(TITLE.benefitList);
+    const discountCount = Object.values(discountList).reduce((sum, item) => sum + item, 0);
+    const discountAmount = Object.values(discountList);
+    if (discountCount === 0 && giftAmount === 0) {
+      Console.print(`${COUNT_UNIT.empty}`);
+    }
+    const eventNames = Object.values(EVENT);
+    discountAmount.forEach((amount, index) => {
+      if (amount > 0) Console.print(`${eventNames[index]} -${amount}${COUNT_UNIT.money}`);
+    });
+    if (giftAmount > 0) {
+      Console.print(`${eventNames[eventNames.length - 1]} -${giftAmount}${COUNT_UNIT.money}`);
+    }
+  },
+
   printError(message) {
     Console.print(message);
   },
