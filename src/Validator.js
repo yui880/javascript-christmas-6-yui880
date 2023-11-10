@@ -17,8 +17,14 @@ const Validator = {
       }
     });
   },
+
   checkIsValidCount(countSum) {
     if (countSum < RANGE.minLen || countSum > RANGE.maxLen) {
+      throw new ValidationError(ERROR.invalidMenu);
+    }
+  },
+  checkHasDuplicate(names) {
+    if (names.length !== new Set(names).size) {
       throw new ValidationError(ERROR.invalidMenu);
     }
   },
