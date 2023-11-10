@@ -8,7 +8,7 @@ class App {
   }
 
   async run() {
-    this.#eventPlanner.run();
+    await this.#eventPlanner.run();
   }
 }
 
