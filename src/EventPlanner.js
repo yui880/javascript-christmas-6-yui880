@@ -16,6 +16,8 @@ class EventPlanner {
   async run() {
     const visitDate = await this.handleException(() => this.#getVisitDate());
     const menu = await this.handleException(() => this.#getMenu());
+    OutputView.printMenu(menu);
+
   }
 
   async handleException(callback) {
