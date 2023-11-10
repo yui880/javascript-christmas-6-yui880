@@ -17,6 +17,11 @@ const Validator = {
       }
     });
   },
+  checkIsValidCount(countSum) {
+    if (countSum < RANGE.minLen || countSum > RANGE.maxLen) {
+      throw new ValidationError(ERROR.invalidMenu);
+    }
+  },
 };
 
 export default Validator;
