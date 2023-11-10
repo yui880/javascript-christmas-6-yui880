@@ -31,13 +31,13 @@ class EventPlanner {
   }
 
   async #getVisitDate() {
-    const visitDate = InputView.readDate();
+    const visitDate = await InputView.readDate();
 
     return visitDate;
   }
 
   async #getMenu() {
-    const menu = InputView.readMenu();
+    const menu = await InputView.readMenu();
 
     return menu;
   }
