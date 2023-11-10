@@ -18,6 +18,8 @@ class EventPlanner {
     const menu = await this.handleException(() => this.#getMenu());
     OutputView.printMenu(menu);
 
+    this.#product.purchase(menu);
+    OutputView.printTotalAmount(this.#product.getAmount());
   }
 
   async handleException(callback) {

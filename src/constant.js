@@ -75,12 +75,12 @@ export const MESSAGE = {
 };
 
 export const EVENT_TITLE = {
-  menu: '\n<주문 메뉴>\n',
-  beforeDiscount: '\n<할인 전 총주문 금액>\n',
-  gift: '\n<증정 메뉴>\n',
-  benefitList: '\n<혜택 내역>\n',
-  totalBenefit: '\n<총혜택 금액>\n',
-  afterDiscount: '\n<할인 후 예상 결제 금액>\n',
+  menu: '\n<주문 메뉴>',
+  beforeDiscount: '\n<할인 전 총주문 금액>',
+  gift: '\n<증정 메뉴>',
+  benefitList: '\n<혜택 내역>',
+  totalBenefit: '\n<총혜택 금액>',
+  afterDiscount: '\n<할인 후 예상 결제 금액>',
   badge: '\n<12월 이벤트 배지>\n',
 };
 

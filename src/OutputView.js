@@ -13,8 +13,19 @@ const OutputView = {
     });
   },
 
+  printTotalAmount(amount) {
+    Console.print(EVENT_TITLE.beforeDiscount);
+    Console.print(`${this.formatNumber(amount)}${COUNT_UNIT.item}`);
+  },
+
   printError(message) {
     Console.print(message);
+  },
+
+  formatNumber(number) {
+    const numberString = String(number);
+
+    return numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   },
 };
 
