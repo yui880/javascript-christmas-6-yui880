@@ -13,10 +13,6 @@ class Gift {
     }
   }
 
-  getCount() {
-    return this.#amount === 0 ? 0 : 1;
-  }
-
   getAmount() {
     return this.#amount;
   }

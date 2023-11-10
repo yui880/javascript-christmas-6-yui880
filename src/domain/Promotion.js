@@ -18,9 +18,9 @@ class Promotion {
 
   getEventResult() {
     const discountList = this.#discount.getAmountList();
-    const giftCount = this.#gift.getCount();
+    const giftAmount = this.#gift.getAmount();
 
-    return { discountList, giftCount };
+    return { discountList, giftAmount };
   }
 
   getTotalDiscountAmount() {

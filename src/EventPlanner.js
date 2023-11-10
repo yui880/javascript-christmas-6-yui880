@@ -20,6 +20,10 @@ class EventPlanner {
 
     this.#product.purchase(menu);
     OutputView.printTotalAmount(this.#product.getAmount());
+    this.#promotion.conductEvent(this.#product, visitDate);
+
+    const { discountList, giftAmount } = this.#promotion.getEventResult();
+    OutputView.printGift(giftAmount);
   }
 
   async handleException(callback) {
