@@ -87,4 +87,5 @@ export const EVENT_TITLE = {
 export const COUNT_UNIT = {
   item: '개',
   money: '원',
+  empty: '없음',
 };

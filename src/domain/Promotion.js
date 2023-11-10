@@ -16,9 +16,17 @@ class Promotion {
     this.#gift.apply(product.getAmount());
   }
 
+  getEventResult() {
+    const discountList = this.#discount.getAmountList();
+    const giftCount = this.#gift.getCount();
+
+    return { discountList, giftCount };
+  }
+
   getTotalDiscountAmount() {
     const discountAmount = this.#discount.getAmount();
     const giftAmount = this.#gift.getAmount();
+
     return { discountAmount, giftAmount };
   }
 }
