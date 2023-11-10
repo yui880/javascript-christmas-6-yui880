@@ -15,6 +15,12 @@ class Promotion {
     this.#discount.apply(product.getAmount(), product.getQuantity(), day);
     this.#gift.apply(product.getAmount());
   }
+
+  getTotalDiscountAmount() {
+    const discountAmount = this.#discount.getAmount();
+    const giftAmount = this.#gift.getAmount();
+    return { discountAmount, giftAmount };
+  }
 }
 
 export default Promotion;
