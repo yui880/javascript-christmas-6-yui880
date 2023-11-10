@@ -1,5 +1,6 @@
 import Discount from './Discount.js';
 import Gift from './Gift.js';
+import { BADGE, COUNT_UNIT } from '../constant.js';
 
 class Promotion {
   #discount;
@@ -25,6 +26,15 @@ class Promotion {
 
   getTotalDiscountAmount() {
     return this.#discount.getAmount();
+  }
+
+  getBadge() {
+    const totalBenefit = this.#discount.getAmount() + this.#gift.getAmount();
+
+    if (totalBenefit >= BADGE.santa.amount) return BADGE.santa.name;
+    if (totalBenefit >= BADGE.tree.amount) return BADGE.tree.name;
+    if (totalBenefit >= BADGE.star.amount) return BADGE.star.name;
+    return COUNT_UNIT.empty;
   }
 }
 
