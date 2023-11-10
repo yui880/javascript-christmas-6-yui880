@@ -1,9 +1,13 @@
 import { Console } from '@woowacourse/mission-utils';
-import { COUNT_UNIT, TITLE, GIFT_ITEM, EVENT } from './constant.js';
+import { COUNT_UNIT, TITLE, GIFT_ITEM, EVENT, REGEX, MESSAGE } from './constant.js';
 
 const OutputView = {
-  printDescription(message) {
-    Console.print(message);
+  printDescription() {
+    Console.print(MESSAGE.welcome);
+  },
+
+  printPreviewMessage(date) {
+    Console.print(MESSAGE.preview(date));
   },
 
   printMenu(menuList) {
@@ -15,7 +19,7 @@ const OutputView = {
 
   printTotalAmount(amount) {
     Console.print(TITLE.beforeDiscount);
-    Console.print(`${this.formatNumber(amount)}${COUNT_UNIT.item}`);
+    Console.print(`${this.formatNumber(amount)}${COUNT_UNIT.money}`);
   },
 
   printGift(giftAmount) {

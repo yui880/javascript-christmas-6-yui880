@@ -14,8 +14,10 @@ class EventPlanner {
   }
 
   async run() {
+    OutputView.printDescription();
     const visitDate = await this.handleException(() => this.#getVisitDate());
     const menu = await this.handleException(() => this.#getMenu());
+    OutputView.printPreviewMessage(visitDate);
     OutputView.printMenu(menu);
 
     this.#product.purchase(menu);
