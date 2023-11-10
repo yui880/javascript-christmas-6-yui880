@@ -10,6 +10,19 @@ const Validator = {
       throw new ValidationError(ERROR.invalidDate);
     }
   },
+
+  validateMenu(menuList) {
+    const names = menuList.map((menu) => menu[0]);
+    const counts = menuList.map((menu) => Number(menu[1]));
+    const countSum = counts.reduce((sum, count) => sum + count, 0);
+
+    this.checkIsNumber(counts);
+    this.checkIsNameInMenu(names);
+    this.checkIsValidCount(countSum);
+    this.checkHasDuplicate(names);
+    this.checkHasDrinkOnly(menuList, countSum);
+  },
+
   checkIsNameInMenu(names) {
     names.forEach((name) => {
       if (!ALL_MENU_NAME.includes(name)) {

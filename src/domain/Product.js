@@ -1,14 +1,21 @@
 import { Console } from '@woowacourse/mission-utils';
 import { MENU, MENU_NAME, MENU_PRIZE } from '../constant.js';
+import Validator from '../Validator.js';
 
 class Product {
   #amount;
 
   #quantity = {};
 
-  constructor() {
+  constructor(menu) {
     this.#amount = 0;
+    Validator.validateMenu(menu);
 
+    this.#initQuantity();
+    this.purchase(menu);
+  }
+
+  #initQuantity() {
     Object.keys(MENU).forEach((menu) => {
       this.#quantity[menu] = new Array(MENU[menu].length).fill(0);
     });

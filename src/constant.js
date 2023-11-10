@@ -6,6 +6,11 @@ export const DISCOUNT_STANDARD = Object.freeze({
   minimumForGift: 120_000,
 });
 
+export const RANGE = Object.freeze({
+  minLen: 1,
+  maxLen: 20,
+});
+
 export const PERIOD = Object.freeze({
   christmas: {
     start: 1,
@@ -58,6 +63,8 @@ export const MENU_NAME = {
   dessert: MENU.dessert.map((food) => food.name),
   drink: MENU.drink.map((food) => food.name),
 };
+
+export const ALL_MENU_NAME = Object.values(MENU_NAME).flat();
 
 export const MENU_PRIZE = {
   appetizer: MENU.appetizer.map((food) => food.price),

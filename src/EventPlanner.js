@@ -2,6 +2,7 @@ import Product from './domain/Product.js';
 import Promotion from './domain/Promotion.js';
 import OutputView from './OutputView.js';
 import InputView from './InputView.js';
+import Validator from './Validator.js';
 
 class EventPlanner {
   #product;
@@ -9,7 +10,6 @@ class EventPlanner {
   #promotion;
 
   constructor() {
-    this.#product = new Product();
     this.#promotion = new Promotion();
   }
 
@@ -20,7 +20,6 @@ class EventPlanner {
     OutputView.printPreviewMessage(visitDate);
     OutputView.printMenu(menu);
 
-    this.#product.purchase(menu);
     OutputView.printTotalAmount(this.#product.getAmount());
     this.#promotion.conductEvent(this.#product, visitDate);
 
@@ -52,14 +51,17 @@ class EventPlanner {
 
   async #getVisitDate() {
     const visitDate = await InputView.readDate();
+    Validator.validateDate(visitDate);
 
     return visitDate;
   }
 
   async #getMenu() {
     const menu = await InputView.readMenu();
+    const splitMenu = this.#getSplitMenu(menu);
 
-    return this.#getSplitMenu(menu);
+    this.#product = new Product(splitMenu);
+    return splitMenu;
   }
 
   #getSplitMenu(menuList) {
