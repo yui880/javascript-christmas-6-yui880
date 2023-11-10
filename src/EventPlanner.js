@@ -39,7 +39,11 @@ class EventPlanner {
   async #getMenu() {
     const menu = await InputView.readMenu();
 
-    return menu;
+    return this.#getSplitMenu(menu);
+  }
+
+  #getSplitMenu(menuList) {
+    return menuList.split(',').map((menu) => menu.split('-').map((item) => item.trim()));
   }
 }
 
