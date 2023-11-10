@@ -6,6 +6,9 @@ const Validator = {
     if (Number(date) < PERIOD.promotion.start || Number(date) > PERIOD.promotion.end) {
       throw new ValidationError(ERROR.invalidDate);
     }
+    if (!Number.isInteger(Number(date))) {
+      throw new ValidationError(ERROR.invalidDate);
+    }
   },
 };
 
