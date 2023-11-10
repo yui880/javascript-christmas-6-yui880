@@ -107,3 +107,9 @@ export const BADGE = {
 export const REGEX = {
   ThousandSeparator: /\B(?=(\d{3})+(?!\d))/g,
 };
+
+export const ERROR = {
+  errorPrefix: '[ERROR]',
+  invalidDate: '유효하지 않은 날짜입니다. 다시 입력해 주세요.',
+  invalidMenu: '유효하지 않은 주문입니다. 다시 입력해 주세요.',
+};
