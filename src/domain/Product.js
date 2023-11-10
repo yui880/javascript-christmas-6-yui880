@@ -27,8 +27,8 @@ class Product {
     const index = MENU_NAME.appetizer.indexOf(name);
 
     if (index >= 0) {
-      this.#quantity.appetizer[index] += count;
-      this.#amount += MENU_PRIZE.appetizer[index] * count;
+      this.#quantity.appetizer[index] += Number(count);
+      this.#amount += MENU_PRIZE.appetizer[index] * Number(count);
     }
   }
 
@@ -36,8 +36,8 @@ class Product {
     const index = MENU_NAME.main.indexOf(name);
 
     if (index >= 0) {
-      this.#quantity.main[index] += count;
-      this.#amount += MENU_PRIZE.main[index] * count;
+      this.#quantity.main[index] += Number(count);
+      this.#amount += MENU_PRIZE.main[index] * Number(count);
     }
   }
 
@@ -45,20 +45,21 @@ class Product {
     const index = MENU_NAME.dessert.indexOf(name);
 
     if (index >= 0) {
-      this.#quantity.dessert[index] += count;
-      this.#amount += MENU_PRIZE.dessert[index] * count;
+      this.#quantity.dessert[index] += Number(count);
+      this.#amount += MENU_PRIZE.dessert[index] * Number(count);
     }
   }
 
   #countDrink([name, count]) {
     const index = MENU_NAME.drink.indexOf(name);
     if (index >= 0) {
-      this.#quantity.drink[index] += count;
-      this.#amount += MENU_PRIZE.drink[index] * count;
+      this.#quantity.drink[index] += Number(count);
+      this.#amount += MENU_PRIZE.drink[index] * Number(count);
     }
   }
 
   getQuantity() {
+    Console.print(this.#quantity);
     return this.#quantity;
   }
 
@@ -67,8 +68,9 @@ class Product {
   }
 }
 
-const p = new Product();
-p.purchase([['초코케이크', 2]]);
-Console.print(p.getQuantity());
+// const p = new Product();
+// p.purchase([['초코케이크', 2]]);
+// Console.print(p.getQuantity());
+// Console.print(p.getAmount());
 
 export default Product;
