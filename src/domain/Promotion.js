@@ -10,6 +10,11 @@ class Promotion {
     this.#discount = new Discount();
     this.#gift = new Gift();
   }
+
+  conductEvent(product, day) {
+    this.#discount.apply(product.getAmount(), product.getQuantity(), day);
+    this.#gift.apply(product.getAmount());
+  }
 }
 
 export default Promotion;
