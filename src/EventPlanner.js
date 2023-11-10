@@ -1,8 +1,9 @@
 import Product from './domain/Product.js';
 import Promotion from './domain/Promotion.js';
 import OutputView from './OutputView.js';
+import InputView from './InputView.js';
 
-class EventPlaner {
+class EventPlanner {
   #product;
 
   #promotion;
@@ -10,6 +11,11 @@ class EventPlaner {
   constructor() {
     this.#product = new Product();
     this.#promotion = new Promotion();
+  }
+
+  async run() {
+    const visitDate = await this.handleException(() => this.#getVisitDate());
+    const menu = await this.handleException(() => this.#getMenu());
   }
 
   async handleException(callback) {
@@ -21,6 +27,18 @@ class EventPlaner {
       return this.handleException(callback);
     }
   }
+
+  async #getVisitDate() {
+    const visitDate = InputView.readDate();
+
+    return visitDate;
+  }
+
+  async #getMenu() {
+    const menu = InputView.readMenu();
+
+    return menu;
+  }
 }
 
-export default EventPlaner;
+export default EventPlanner;
