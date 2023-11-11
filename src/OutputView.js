@@ -36,14 +36,25 @@ const OutputView = {
     Console.print(TITLE.benefitList);
     const discountCount = Object.values(discountList).reduce((sum, item) => sum + item, 0);
     const discountAmount = Object.values(discountList);
+    const eventNames = Object.values(EVENT);
+
     if (discountCount === 0 && giftAmount === 0) {
       Console.print(`${COUNT_UNIT.empty}`);
+      return;
     }
-    const eventNames = Object.values(EVENT);
+    this.printDiscountAmount(discountAmount, eventNames);
+    this.printGiftAmount(giftAmount, eventNames);
+  },
+
+  printDiscountAmount(discountAmount, eventNames) {
     discountAmount.forEach((amount, index) => {
-      if (amount > 0)
+      if (amount > 0) {
         Console.print(`${eventNames[index]} ${this.formatNumber(-amount)}${COUNT_UNIT.money}`);
+      }
     });
+  },
+
+  printGiftAmount(giftAmount, eventNames) {
     if (giftAmount > 0) {
       Console.print(
         `${eventNames[eventNames.length - 1]} ${this.formatNumber(-giftAmount)}${COUNT_UNIT.money}`,
@@ -71,9 +82,7 @@ const OutputView = {
   },
 
   formatNumber(number) {
-    const numberString = String(number);
-
-    return numberString.replace(REGEX.ThousandSeparator, ',');
+    return String(number).replace(REGEX.ThousandSeparator, ',');
   },
 };
 
