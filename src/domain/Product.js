@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { MENU, MENU_NAME, MENU_PRIZE } from '../constant.js';
+import { MENU, MENU_NAME, MENU_PRICE } from '../constant.js';
 import Validator from '../Validator.js';
 
 class Product {
@@ -35,7 +36,16 @@ class Product {
 
     if (index >= 0) {
       this.#quantity.appetizer[index] += Number(count);
-      this.#amount += MENU_PRIZE.appetizer[index] * Number(count);
+      this.#amount += MENU_PRICE.appetizer[index] * Number(count);
+    }
+  }
+
+  #countByCategory({ category, name, count }) {
+    const index = MENU_NAME[category].indexOf(name);
+
+    if (index >= 0) {
+      this.#quantity[category][index] += Number(count);
+      this.#amount += MENU_PRICE[category][index] * Number(count);
     }
   }
 
@@ -44,7 +54,7 @@ class Product {
 
     if (index >= 0) {
       this.#quantity.main[index] += Number(count);
-      this.#amount += MENU_PRIZE.main[index] * Number(count);
+      this.#amount += MENU_PRICE.main[index] * Number(count);
     }
   }
 
@@ -53,7 +63,7 @@ class Product {
 
     if (index >= 0) {
       this.#quantity.dessert[index] += Number(count);
-      this.#amount += MENU_PRIZE.dessert[index] * Number(count);
+      this.#amount += MENU_PRICE.dessert[index] * Number(count);
     }
   }
 
@@ -61,7 +71,7 @@ class Product {
     const index = MENU_NAME.drink.indexOf(name);
     if (index >= 0) {
       this.#quantity.drink[index] += Number(count);
-      this.#amount += MENU_PRIZE.drink[index] * Number(count);
+      this.#amount += MENU_PRICE.drink[index] * Number(count);
     }
   }
 

@@ -66,7 +66,7 @@ export const MENU_NAME = {
 
 export const ALL_MENU_NAME = Object.values(MENU_NAME).flat();
 
-export const MENU_PRIZE = {
+export const MENU_PRICE = {
   appetizer: MENU.appetizer.map((food) => food.price),
   main: MENU.main.map((food) => food.price),
   dessert: MENU.dessert.map((food) => food.price),
