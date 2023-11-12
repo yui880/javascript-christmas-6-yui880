@@ -13,8 +13,8 @@ class Promotion {
   }
 
   conductEvent(product, day) {
-    this.#discount.apply(product.getAmount(), product.getQuantity(), day);
-    this.#gift.apply(product.getAmount());
+    this.#discount.apply(product.getPrice(), product.getQuantity(), day);
+    this.#gift.apply(product.getPrice());
   }
 
   getEventResult() {

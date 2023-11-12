@@ -1,13 +1,13 @@
-import { CATEGORY, MENU, MENU_NAME, MENU_PRICE } from '../constant.js';
+import { CATEGORY, MENU_NAME, MENU_PRICE } from '../constant.js';
 import Validator from '../Validator.js';
 
 class Product {
-  #amount;
+  #price;
 
   #quantity = {};
 
   constructor(menu) {
-    this.#amount = 0;
+    this.#price = 0;
     Validator.validateMenu(menu);
 
     this.#initQuantity();
@@ -15,8 +15,8 @@ class Product {
   }
 
   #initQuantity() {
-    Object.keys(MENU).forEach((menu) => {
-      this.#quantity[menu] = new Array(MENU[menu].length).fill(0);
+    CATEGORY.forEach((categoryName) => {
+      this.#quantity[categoryName] = new Array(MENU_NAME[categoryName].length).fill(0);
     });
   }
 
@@ -33,7 +33,7 @@ class Product {
 
     if (index >= 0) {
       this.#quantity[category][index] += Number(count);
-      this.#amount += MENU_PRICE[category][index] * Number(count);
+      this.#price += MENU_PRICE[category][index] * Number(count);
     }
   }
 
@@ -41,8 +41,8 @@ class Product {
     return this.#quantity;
   }
 
-  getAmount() {
-    return this.#amount;
+  getPrice() {
+    return this.#price;
   }
 }
 

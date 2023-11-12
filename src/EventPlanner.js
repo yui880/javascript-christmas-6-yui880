@@ -20,7 +20,7 @@ class EventPlanner {
     OutputView.printPreviewMessage(visitDate);
     OutputView.printMenu(menu);
 
-    OutputView.printTotalAmount(this.#product.getAmount());
+    OutputView.printTotalAmount(this.#product.getPrice());
     this.#promotion.conductEvent(this.#product, visitDate);
 
     this.#printEventResult();
@@ -33,7 +33,7 @@ class EventPlanner {
 
     const discountAmount = this.#promotion.getTotalDiscountAmount();
     OutputView.printTotalDiscount(discountAmount + giftAmount);
-    OutputView.printAfterDiscount(this.#product.getAmount() - discountAmount);
+    OutputView.printAfterDiscount(this.#product.getPrice() - discountAmount);
 
     const badge = this.#promotion.getBadge();
     OutputView.printBadge(badge);
