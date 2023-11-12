@@ -100,6 +100,8 @@ export const EVENT = {
   gift: '증정 이벤트:',
 };
 
+export const EVENT_NAME = Object.keys(EVENT);
+
 export const COUNT_UNIT = {
   item: '개',
   money: '원',

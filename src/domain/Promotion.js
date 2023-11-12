@@ -13,7 +13,7 @@ class Promotion {
   }
 
   conductEvent(product, day) {
-    this.#discount.apply(product.getPrice(), product.getQuantity(), day);
+    this.#discount.apply(product, day);
     this.#gift.apply(product);
   }
 

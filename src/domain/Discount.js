@@ -12,14 +12,14 @@ class Discount {
     };
   }
 
-  apply(totalAmount, purchaseList, day) {
-    if (totalAmount < DISCOUNT_STANDARD.minimum) return;
+  apply(product, day) {
+    if (product.getPrice() < DISCOUNT_STANDARD.minimum) return;
 
     const dayOfWeek = this.getDayOfWeek(day);
 
     this.#applyChristmasEvent(day);
-    this.#applyWeekDayEvent(purchaseList, dayOfWeek);
-    this.#applyWeekendEvent(purchaseList, dayOfWeek);
+    this.#applyWeekDayEvent(product.getDessertOrderCount(), dayOfWeek);
+    this.#applyWeekendEvent(product.getMainOrderCount(), dayOfWeek);
     this.#applySpecialEvent(day);
   }
 
@@ -29,23 +29,15 @@ class Discount {
     }
   }
 
-  #applyWeekDayEvent(purchaseList, dayOfWeek) {
-    if (dayOfWeek >= WEEK.sunday && dayOfWeek <= WEEK.thursday) {
-      const dessertCount = purchaseList.dessert.reduce((sum, cnt) => sum + cnt, 0);
-
-      if (dessertCount > 0) {
-        this.#amountList.weekDay += DISCOUNT_STANDARD.week * dessertCount;
-      }
+  #applyWeekDayEvent(dessertCount, dayOfWeek) {
+    if (dayOfWeek >= WEEK.sunday && dayOfWeek <= WEEK.thursday && dessertCount > 0) {
+      this.#amountList.weekDay += DISCOUNT_STANDARD.week * dessertCount;
     }
   }
 
-  #applyWeekendEvent(purchaseList, dayOfWeek) {
-    if (dayOfWeek === WEEK.friday || dayOfWeek === WEEK.saturday) {
-      const mainCount = purchaseList.main.reduce((sum, cnt) => sum + cnt, 0);
-
-      if (mainCount > 0) {
-        this.#amountList.weekend += DISCOUNT_STANDARD.week * mainCount;
-      }
+  #applyWeekendEvent(mainCount, dayOfWeek) {
+    if (mainCount > 0 && (dayOfWeek === WEEK.friday || dayOfWeek === WEEK.saturday)) {
+      this.#amountList.weekend += DISCOUNT_STANDARD.week * mainCount;
     }
   }
 
