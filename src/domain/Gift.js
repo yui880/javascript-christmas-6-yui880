@@ -7,8 +7,8 @@ class Gift {
     this.#amount = 0;
   }
 
-  apply(totalAmount) {
-    if (totalAmount >= DISCOUNT_STANDARD.minimumForGift) {
+  apply(product) {
+    if (product.isPriceGreaterThan(DISCOUNT_STANDARD.minimumForGift)) {
       this.#amount += GIFT_ITEM.price;
     }
   }

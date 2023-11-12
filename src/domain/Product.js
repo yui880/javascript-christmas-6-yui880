@@ -37,6 +37,10 @@ class Product {
     }
   }
 
+  isPriceGreaterThan(number) {
+    return this.#price > number;
+  }
+
   getQuantity() {
     return this.#quantity;
   }
