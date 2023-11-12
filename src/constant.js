@@ -64,6 +64,7 @@ export const MENU_NAME = {
   drink: MENU.drink.map((food) => food.name),
 };
 
+export const CATEGORY = Object.keys(MENU);
 export const ALL_MENU_NAME = Object.values(MENU_NAME).flat();
 
 export const MENU_PRICE = {
@@ -108,7 +109,7 @@ export const COUNT_UNIT = {
 export const BADGE = {
   star: { name: '별', amount: 5000 },
   tree: { name: '트리', amount: 10000 },
-  santa: { name: '산타', amount: 5000 },
+  santa: { name: '산타', amount: 20000 },
 };
 
 export const REGEX = {

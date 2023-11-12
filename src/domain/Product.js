@@ -1,6 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
-import { MENU, MENU_NAME, MENU_PRIZE } from '../constant.js';
-import { MENU, MENU_NAME, MENU_PRICE } from '../constant.js';
+import { CATEGORY, MENU, MENU_NAME, MENU_PRICE } from '../constant.js';
 import Validator from '../Validator.js';
 
 class Product {
@@ -23,21 +21,11 @@ class Product {
   }
 
   purchase(orderedItem) {
-    orderedItem.forEach((item) => {
-      this.#countAppetizer(item);
-      this.#countMain(item);
-      this.#countDessert(item);
-      this.#countDrink(item);
+    orderedItem.forEach(([name, count]) => {
+      CATEGORY.forEach((categoryName) => {
+        this.#countByCategory({ category: categoryName, name, count });
+      });
     });
-  }
-
-  #countAppetizer([name, count]) {
-    const index = MENU_NAME.appetizer.indexOf(name);
-
-    if (index >= 0) {
-      this.#quantity.appetizer[index] += Number(count);
-      this.#amount += MENU_PRICE.appetizer[index] * Number(count);
-    }
   }
 
   #countByCategory({ category, name, count }) {
@@ -49,32 +37,6 @@ class Product {
     }
   }
 
-  #countMain([name, count]) {
-    const index = MENU_NAME.main.indexOf(name);
-
-    if (index >= 0) {
-      this.#quantity.main[index] += Number(count);
-      this.#amount += MENU_PRICE.main[index] * Number(count);
-    }
-  }
-
-  #countDessert([name, count]) {
-    const index = MENU_NAME.dessert.indexOf(name);
-
-    if (index >= 0) {
-      this.#quantity.dessert[index] += Number(count);
-      this.#amount += MENU_PRICE.dessert[index] * Number(count);
-    }
-  }
-
-  #countDrink([name, count]) {
-    const index = MENU_NAME.drink.indexOf(name);
-    if (index >= 0) {
-      this.#quantity.drink[index] += Number(count);
-      this.#amount += MENU_PRICE.drink[index] * Number(count);
-    }
-  }
-
   getQuantity() {
     return this.#quantity;
   }
@@ -83,10 +45,5 @@ class Product {
     return this.#amount;
   }
 }
-
-// const p = new Product();
-// p.purchase([['초코케이크', 2]]);
-// Console.print(p.getQuantity());
-// Console.print(p.getAmount());
 
 export default Product;
