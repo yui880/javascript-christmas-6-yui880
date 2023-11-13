@@ -45,8 +45,8 @@ class Product {
     return this.#quantity.main.reduce((sum, cnt) => sum + cnt, 0);
   }
 
-  isPriceGreaterThan(number) {
-    return this.#price > number;
+  isPriceLessThan(number) {
+    return this.#price < number;
   }
 
   getTotalPrice() {

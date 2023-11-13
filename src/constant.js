@@ -20,6 +20,7 @@ export const PERIOD = Object.freeze({
     start: 1,
     end: 31,
   },
+  eventDate: (day) => `2023-12-${day}`,
 });
 
 export const WEEK = Object.freeze({

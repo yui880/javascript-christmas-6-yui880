@@ -28,10 +28,13 @@ class EventPlanner {
 
   #printEventResult() {
     OutputView.printGift(this.#promotion.getGiftCount());
-    OutputView.printDiscountList(this.#promotion.getEventResult());
+    OutputView.printDiscountList(this.#promotion.isEmpty(), this.#promotion.getEventBenefitList());
 
-    const badge = this.#promotion.getBadge();
-    OutputView.printBadge(badge);
+    OutputView.printTotalBenefit(this.#promotion.getTotalBenefitAmount());
+    OutputView.printAfterDiscount(
+      this.#product.getTotalPrice() - this.#promotion.getTotalDiscountAmount(),
+    );
+    OutputView.printBadge(this.#promotion.getBadge());
   }
 
   async handleException(callback) {

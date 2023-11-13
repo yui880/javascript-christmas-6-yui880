@@ -11,10 +11,14 @@ class Gift {
   }
 
   apply(product) {
-    if (product.isPriceGreaterThan(DISCOUNT_STANDARD.minimumForGift)) {
-      this.#amount += GIFT_ITEM.price;
-      this.#count += 1;
-    }
+    if (product.isPriceLessThan(DISCOUNT_STANDARD.minimumForGift)) return;
+
+    this.#amount += GIFT_ITEM.price;
+    this.#count += 1;
+  }
+
+  isEmpty() {
+    return this.#amount === 0;
   }
 
   getCount() {

@@ -17,7 +17,11 @@ class Promotion {
     this.#gift.apply(product);
   }
 
-  getEventResult() {
+  isEmpty() {
+    return this.#gift.isEmpty() && this.#discount.isEmpty();
+  }
+
+  getEventBenefitList() {
     const discountAmountList = this.#discount.getAmountByEvent();
     const giftAmount = this.#gift.getAmount();
 
@@ -28,12 +32,16 @@ class Promotion {
     return this.#gift.getCount();
   }
 
+  getTotalBenefitAmount() {
+    return this.#discount.getAmount() + this.#gift.getAmount();
+  }
+
   getTotalDiscountAmount() {
     return this.#discount.getAmount();
   }
 
   getBadge() {
-    const totalBenefit = this.#discount.getAmount() + this.#gift.getAmount();
+    const totalBenefit = this.getTotalBenefitAmount();
 
     if (totalBenefit >= BADGE.santa.amount) return BADGE.santa.name;
     if (totalBenefit >= BADGE.tree.amount) return BADGE.tree.name;

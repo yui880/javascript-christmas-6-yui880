@@ -14,7 +14,7 @@ class Discount {
   }
 
   apply(product, day) {
-    if (product.getTotalPrice() < DISCOUNT_STANDARD.minimum) return;
+    if (product.isPriceLessThan(DISCOUNT_STANDARD.minimum)) return;
 
     const dayOfWeek = this.getDayOfWeek(day);
 
@@ -48,8 +48,12 @@ class Discount {
     }
   }
 
+  isEmpty() {
+    return this.getAmount() === 0;
+  }
+
   getDayOfWeek(day) {
-    return new Date(`2023-12-${day}`).getDay();
+    return new Date(PERIOD.eventDate(day)).getDay();
   }
 
   getAmountByEvent() {

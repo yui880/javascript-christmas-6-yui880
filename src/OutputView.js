@@ -32,14 +32,13 @@ const OutputView = {
     Console.print(`${GIFT_ITEM.name} ${giftCount}${COUNT_UNIT.item}`);
   },
 
-  printDiscountList(eventResult) {
+  printDiscountList(isEmpty, eventResult) {
     Console.print(TITLE.benefitList);
 
-    if (eventResult.filter((amount) => amount === 0).length === eventResult.length) {
+    if (isEmpty) {
       Console.print(`${COUNT_UNIT.empty}`);
       return;
     }
-
     eventResult.forEach((amount, index) => {
       if (amount > 0) {
         Console.print(`${EVENT_NAME[index]} ${this.formatNumber(-amount)}${COUNT_UNIT.money}`);
@@ -47,23 +46,7 @@ const OutputView = {
     });
   },
 
-  printDiscountAmount(discountAmount, eventNames) {
-    discountAmount.forEach((amount, index) => {
-      if (amount > 0) {
-        Console.print(`${eventNames[index]} ${this.formatNumber(-amount)}${COUNT_UNIT.money}`);
-      }
-    });
-  },
-
-  printGiftAmount(giftAmount, eventNames) {
-    if (giftAmount > 0) {
-      Console.print(
-        `${eventNames[eventNames.length - 1]} ${this.formatNumber(-giftAmount)}${COUNT_UNIT.money}`,
-      );
-    }
-  },
-
-  printTotalDiscount(amount) {
+  printTotalBenefit(amount) {
     Console.print(TITLE.totalBenefit);
     Console.print(`${this.formatNumber(-amount)}${COUNT_UNIT.money}`);
   },
