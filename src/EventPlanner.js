@@ -20,7 +20,7 @@ class EventPlanner {
     OutputView.printPreviewMessage(visitDate);
     OutputView.printMenu(menu);
 
-    OutputView.printTotalAmount(this.#product.getPrice());
+    OutputView.printTotalAmount(this.#product.getTotalPrice());
     this.#promotion.conductEvent(this.#product, visitDate);
 
     this.#printEventResult();

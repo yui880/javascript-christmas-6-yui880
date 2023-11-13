@@ -49,11 +49,7 @@ class Product {
     return this.#price > number;
   }
 
-  getQuantity() {
-    return this.#quantity;
-  }
-
-  getPrice() {
+  getTotalPrice() {
     return this.#price;
   }
 }

@@ -13,7 +13,7 @@ class Discount {
   }
 
   apply(product, day) {
-    if (product.getPrice() < DISCOUNT_STANDARD.minimum) return;
+    if (product.getTotalPrice() < DISCOUNT_STANDARD.minimum) return;
 
     const dayOfWeek = this.getDayOfWeek(day);
 
