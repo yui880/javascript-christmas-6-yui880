@@ -22,14 +22,14 @@ const OutputView = {
     Console.print(`${this.formatNumber(amount)}${COUNT_UNIT.money}`);
   },
 
-  printGift(giftAmount) {
+  printGift(giftCount) {
     Console.print(TITLE.gift);
 
-    if (giftAmount > 0) {
-      Console.print(`${GIFT_ITEM.name} 1${COUNT_UNIT.item}`);
+    if (giftCount <= 0) {
+      Console.print(`${COUNT_UNIT.empty}`);
       return;
     }
-    Console.print(`${COUNT_UNIT.empty}`);
+    Console.print(`${GIFT_ITEM.name} ${giftCount}${COUNT_UNIT.item}`);
   },
 
   printDiscountList(discountList, giftAmount) {

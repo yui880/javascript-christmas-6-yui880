@@ -24,6 +24,10 @@ class Promotion {
     return { discountList, giftAmount };
   }
 
+  getGiftCount() {
+    return this.#gift.getCount();
+  }
+
   getTotalDiscountAmount() {
     return this.#discount.getAmount();
   }
