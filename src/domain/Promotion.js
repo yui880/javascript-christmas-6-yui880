@@ -18,10 +18,10 @@ class Promotion {
   }
 
   getEventResult() {
-    const discountList = this.#discount.getAmountList();
+    const discountAmountList = this.#discount.getAmountByEvent();
     const giftAmount = this.#gift.getAmount();
 
-    return { discountList, giftAmount };
+    return [...discountAmountList, giftAmount];
   }
 
   getGiftCount() {

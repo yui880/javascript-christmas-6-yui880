@@ -27,14 +27,8 @@ class EventPlanner {
   }
 
   #printEventResult() {
-    const { discountList, giftAmount } = this.#promotion.getEventResult();
-    OutputView.printGift(giftAmount);
-    OutputView.printDiscountList(discountList, giftAmount);
-
-    const discountAmount = this.#promotion.getTotalDiscountAmount();
-    OutputView.printTotalDiscount(discountAmount + giftAmount);
-    OutputView.printAfterDiscount(this.#product.getPrice() - discountAmount);
     OutputView.printGift(this.#promotion.getGiftCount());
+    OutputView.printDiscountList(this.#promotion.getEventResult());
 
     const badge = this.#promotion.getBadge();
     OutputView.printBadge(badge);
