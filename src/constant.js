@@ -92,15 +92,23 @@ export const TITLE = {
   badge: '\n<12월 이벤트 배지>',
 };
 
-export const EVENT = {
+export const DISCOUNT_EVENT = {
   christmas: '크리스마스 디데이 할인:',
   weekday: '평일 할인:',
   weekend: '주말 할인:',
   special: '특별 할인:',
+};
+
+export const GIFT_EVENT = {
   gift: '증정 이벤트:',
 };
 
-export const EVENT_NAME = Object.keys(EVENT);
+export const EVENT = {
+  ...DISCOUNT_EVENT,
+  ...GIFT_EVENT,
+};
+
+export const EVENT_NAME = Object.values(EVENT);
 
 export const COUNT_UNIT = {
   item: '개',

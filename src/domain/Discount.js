@@ -1,15 +1,16 @@
-import { DISCOUNT_STANDARD, PERIOD, SPECIAL_DAY, WEEK } from '../constant.js';
+import { DISCOUNT_EVENT, DISCOUNT_STANDARD, PERIOD, SPECIAL_DAY, WEEK } from '../constant.js';
 
 class Discount {
-  #amountList;
+  #amountList = {};
 
   constructor() {
-    this.#amountList = {
-      christmas: 0,
-      weekDay: 0,
-      weekend: 0,
-      special: 0,
-    };
+    this.#initAmountList();
+  }
+
+  #initAmountList() {
+    Object.keys(DISCOUNT_EVENT).forEach((eventName) => {
+      this.#amountList[eventName] = 0;
+    });
   }
 
   apply(product, day) {
@@ -31,7 +32,7 @@ class Discount {
 
   #applyWeekDayEvent(dessertCount, dayOfWeek) {
     if (dayOfWeek >= WEEK.sunday && dayOfWeek <= WEEK.thursday && dessertCount > 0) {
-      this.#amountList.weekDay += DISCOUNT_STANDARD.week * dessertCount;
+      this.#amountList.weekday += DISCOUNT_STANDARD.week * dessertCount;
     }
   }
 
@@ -51,12 +52,12 @@ class Discount {
     return new Date(`2023-12-${day}`).getDay();
   }
 
-  getAmount() {
-    return Object.values(this.#amountList).reduce((sum, item) => sum + item);
+  getAmountByEvent() {
+    return Object.values(this.#amountList);
   }
 
-  getAmountList() {
-    return this.#amountList;
+  getAmount() {
+    return Object.values(this.#amountList).reduce((sum, item) => sum + item);
   }
 }
 
