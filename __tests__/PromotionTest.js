@@ -1,7 +1,7 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
 import Promotion from '../src/domain/Promotion.js';
 import { BADGE, COUNT_UNIT } from '../src/constant.js';
 import Product from '../src/domain/Product.js';
+import Day from '../src/domain/Day.js';
 
 const getDiscountMock = ({ isEmpty = false, getAmountByEvent = 0, getAmount = 0 }) => ({
   isEmpty: jest.fn(() => isEmpty),
@@ -106,7 +106,7 @@ describe('Promotion 클래스 테스트 - 다른 클래스 사용해서 테스�
   ])('할인과 증정 금액 리스트를 합친 결과를 만드는 기능 테스트', ({ menu, day, benefitList }) => {
     // given
     const promotion = new Promotion();
-    promotion.conductEvent(new Product(menu), day);
+    promotion.conductEvent(new Product(menu), new Day(day));
 
     // when
     const result = promotion.getEventBenefitList();
@@ -121,7 +121,7 @@ describe('Promotion 클래스 테스트 - 다른 클래스 사용해서 테스�
   ])('총 할인 금액이 0원인지 확인하는 기능 테스트', ({ menu, isEmpty }) => {
     // given
     const promotion = new Promotion();
-    promotion.conductEvent(new Product(menu), 1);
+    promotion.conductEvent(new Product(menu), new Day(1));
 
     // when
     const result = promotion.isEmpty();
@@ -153,7 +153,7 @@ describe('Promotion 클래스 테스트 - 다른 클래스 사용해서 테스�
     ({ menu, day, totalBenefitAmount }) => {
       // given
       const promotion = new Promotion();
-      promotion.conductEvent(new Product(menu), day);
+      promotion.conductEvent(new Product(menu), new Day(day));
 
       // when
       const result = promotion.getTotalBenefitAmount();
@@ -194,7 +194,7 @@ describe('Promotion 클래스 테스트 - 다른 클래스 사용해서 테스�
   ])('할인 금액을 바탕으로 배지를 구하는 기능 테스트', ({ menu, day, badge }) => {
     // given
     const promotion = new Promotion();
-    promotion.conductEvent(new Product(menu), day);
+    promotion.conductEvent(new Product(menu), new Day(day));
 
     // when
     const result = promotion.getBadge();

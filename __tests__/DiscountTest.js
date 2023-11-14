@@ -1,6 +1,7 @@
 import Discount from '../src/domain/Discount.js';
 import { DISCOUNT_EVENT, DISCOUNT_STANDARD, PERIOD } from '../src/constant.js';
 import Product from '../src/domain/Product.js';
+import Day from '../src/domain/Day.js';
 
 const getCustomProductMock = ({
   isPriceLessThan = false,
@@ -43,22 +44,23 @@ describe('Discount 클래스 테스트', () => {
     {
       dessertCount: 1,
       mainCount: 2,
-      day: 8, // 금요일
+      date: 8, // 평일, 크리스마스 이벤트
       output: 5746, // 주말 4046 + 크리스마스 1700
     },
     {
       dessertCount: 1,
       mainCount: 0,
-      day: 10, // 일요일, 별
+      date: 10, // 주말, 특별이벤트, 크리스마스 이벤트
       output: 4923, // 평일 2023 + 크리스마스 1900 + 특별 1000
     },
-  ])('총 할인 금액을 구하는 기능 테스트', ({ dessertCount, mainCount, day, output }) => {
+  ])('총 할인 금액을 구하는 기능 테스트', ({ dessertCount, mainCount, date, output }) => {
     // given
     const productMock = getCustomProductMock({
       isPriceLessThan: false,
       dessertOrderCount: dessertCount,
       mainOrderCount: mainCount,
     });
+    const day = new Day(date);
     discount.apply(productMock, day);
 
     // when
@@ -72,25 +74,25 @@ describe('Discount 클래스 테스트', () => {
     {
       dessertCount: 1,
       mainCount: 2,
-      day: 8, // 금요일
+      date: 8, // 금요일
       output: false,
     },
     {
       dessertCount: 0,
       mainCount: 0,
-      day: 10,
+      date: 10,
       output: false,
     },
   ])(
     '총 할인 금액이 0인지 아닌지 구하는 기능 테스트',
-    ({ dessertCount, mainCount, day, output }) => {
+    ({ dessertCount, mainCount, date, output }) => {
       // given
       const productMock = getCustomProductMock({
         isPriceLessThan: false,
         dessertOrderCount: dessertCount,
         mainOrderCount: mainCount,
       });
-      discount.apply(productMock, day);
+      discount.apply(productMock, new Day(date));
 
       // when
       const result = discount.isEmpty();
@@ -99,23 +101,6 @@ describe('Discount 클래스 테스트', () => {
       expect(result).toBe(output);
     },
   );
-
-  test.each([
-    {
-      day: 1,
-      dayOfWeek: 5, // 금요일
-    },
-    {
-      day: 31,
-      dayOfWeek: 0, // 일요일
-    },
-  ])('날짜를 입력하면 무슨 요일인지 알려주는 기능 테스트(12월 한정)', ({ day, dayOfWeek }) => {
-    // when
-    const result = discount.getDayOfWeek(day);
-
-    // then
-    expect(result).toBe(dayOfWeek);
-  });
 });
 
 describe('Discount 할인 이벤트 테스트', () => {
@@ -138,7 +123,7 @@ describe('Discount 할인 이벤트 테스트', () => {
     ({ day, output }) => {
       // given
       const productMock = getCustomProductMock({ isPriceLessThan: false });
-      discount.apply(productMock, day);
+      discount.apply(productMock, new Day(day));
 
       // when
       const result = discount.getAmountByEvent()[0];
@@ -147,14 +132,14 @@ describe('Discount 할인 이벤트 테스트', () => {
   );
 
   test.each([
-    { day: PERIOD.christmas.start - 1, output: 0 },
+    { day: 30, output: 0 },
     { day: PERIOD.christmas.end + 1, output: 0 },
   ])(
     `날짜가 ${PERIOD.christmas.start}-${PERIOD.christmas.end}가 아닐 때 크리스마스 이벤트가 적용되지 않는지 테스트`,
     ({ day, output }) => {
       // given
       const productMock = getCustomProductMock({ isPriceLessThan: false });
-      discount.apply(productMock, day);
+      discount.apply(productMock, new Day(day));
 
       // when
       const result = discount.getAmountByEvent()[0];
@@ -173,7 +158,7 @@ describe('Discount 할인 이벤트 테스트', () => {
         isPriceLessThan: false,
         dessertOrderCount: dessertCount,
       });
-      discount.apply(productMock, day);
+      discount.apply(productMock, new Day(day));
 
       // when
       const result = discount.getAmountByEvent()[1];
@@ -194,7 +179,7 @@ describe('Discount 할인 이벤트 테스트', () => {
         isPriceLessThan: false,
         dessertOrderCount: dessertCount,
       });
-      discount.apply(productMock, day);
+      discount.apply(productMock, new Day(day));
 
       // when
       const result = discount.getAmountByEvent()[1];
@@ -215,7 +200,7 @@ describe('Discount 할인 이벤트 테스트', () => {
         isPriceLessThan: false,
         mainOrderCount: mainCount,
       });
-      discount.apply(productMock, day);
+      discount.apply(productMock, new Day(day));
 
       // when
       const result = discount.getAmountByEvent()[2];
@@ -236,7 +221,7 @@ describe('Discount 할인 이벤트 테스트', () => {
         isPriceLessThan: false,
         mainOrderCount: mainCount,
       });
-      discount.apply(productMock, day);
+      discount.apply(productMock, new Day(day));
 
       // when
       const result = discount.getAmountByEvent()[2];
@@ -254,7 +239,7 @@ describe('Discount 할인 이벤트 테스트', () => {
     const productMock = getCustomProductMock({
       isPriceLessThan: false,
     });
-    discount.apply(productMock, day);
+    discount.apply(productMock, new Day(day));
 
     // when
     const result = discount.getAmountByEvent()[3];
@@ -271,7 +256,7 @@ describe('Discount 할인 이벤트 테스트', () => {
     const productMock = getCustomProductMock({
       isPriceLessThan: false,
     });
-    discount.apply(productMock, day);
+    discount.apply(productMock, new Day(day));
 
     // when
     const result = discount.getAmountByEvent()[3];
@@ -302,7 +287,7 @@ describe('Discount 할인 이벤트 테스트', () => {
         dessertOrderCount: dessertCount,
         mainOrderCount: mainCount,
       });
-      discount.apply(productMock, day);
+      discount.apply(productMock, new Day(day));
 
       // when
       const result = discount.getAmountByEvent();
