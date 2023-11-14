@@ -3,12 +3,8 @@ import ValidationError from './ValidationError.js';
 
 const Validator = {
   validateDate(date) {
-    if (Number(date) < PERIOD.promotion.start || Number(date) > PERIOD.promotion.end) {
-      throw new ValidationError(ERROR.invalidDate);
-    }
-    if (!Number.isInteger(Number(date))) {
-      throw new ValidationError(ERROR.invalidDate);
-    }
+    this.checkIsInteger(date);
+    this.checkIsValidDate(date);
   },
 
   validateMenu(menuList) {
@@ -22,6 +18,18 @@ const Validator = {
     this.checkIsValidTotalCount(countSum);
     this.checkHasDuplicate(names);
     this.checkHasDrinkOnly(menuList, countSum);
+  },
+
+  checkIsValidDate(date) {
+    if (Number(date) < PERIOD.promotion.start || Number(date) > PERIOD.promotion.end) {
+      throw new ValidationError(ERROR.invalidDate);
+    }
+  },
+
+  checkIsInteger(number) {
+    if (!Number.isInteger(Number(number))) {
+      throw new ValidationError(ERROR.invalidDate);
+    }
   },
 
   checkIsNameInMenu(names) {
