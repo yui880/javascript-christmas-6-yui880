@@ -71,7 +71,7 @@ const Validator = {
   checkHasDrinkOnly(menuList, countSum) {
     const drinkCount = menuList.reduce((sum, [name, count]) => {
       if (MENU_NAME.drink.includes(name)) {
-        return sum + count;
+        return sum + Number(count);
       }
       return sum;
     }, 0);
