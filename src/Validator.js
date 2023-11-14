@@ -10,7 +10,7 @@ const Validator = {
   validateMenu(menuList) {
     const names = menuList.map((menu) => menu[0]);
     const counts = menuList.map((menu) => Number(menu[1]));
-    const countSum = counts.reduce((sum, count) => sum + count, 0);
+    const countSum = counts.reduce((sum, count) => sum + Number(count), 0);
 
     this.checkIsAllInteger(counts);
     this.checkIsNameInMenu(names);
@@ -86,7 +86,7 @@ const Validator = {
     }
   },
 
-  isInteger: (number) => !Number.isInteger(Number(number)) && number !== '',
+  isInteger: (number) => number === '' || !Number.isInteger(Number(number)),
 };
 
 export default Validator;
