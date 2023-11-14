@@ -9,24 +9,27 @@ class EventPlanner {
 
   #promotion;
 
-  constructor() {
-    this.#promotion = new Promotion();
+  constructor(promotion = new Promotion()) {
+    this.#promotion = promotion;
   }
 
   async run() {
     OutputView.printDescription();
     const visitDate = await this.handleException(() => this.#getVisitDate());
     const menu = await this.handleException(() => this.#getMenu());
-    OutputView.printPreviewMessage(visitDate);
-    OutputView.printMenu(menu);
 
-    OutputView.printTotalAmount(this.#product.getTotalPrice());
+    this.#printBeforeEvent(visitDate, menu);
     this.#promotion.conductEvent(this.#product, visitDate);
-
-    this.#printEventResult();
+    this.#printAfterEvent();
   }
 
-  #printEventResult() {
+  #printBeforeEvent(visitDate, menu) {
+    OutputView.printPreviewMessage(visitDate);
+    OutputView.printMenu(menu);
+    OutputView.printTotalAmount(this.#product.getTotalPrice());
+  }
+
+  #printAfterEvent() {
     OutputView.printGift(this.#promotion.getGiftCount());
     OutputView.printDiscountList(this.#promotion.isEmpty(), this.#promotion.getEventBenefitList());
 
@@ -56,13 +59,13 @@ class EventPlanner {
 
   async #getMenu() {
     const menu = await InputView.readMenu();
-    const splitMenu = this.#getSplitMenu(menu);
+    const splitMenu = this.#splitMenuList(menu);
 
     this.#product = new Product(splitMenu);
     return splitMenu;
   }
 
-  #getSplitMenu(menuList) {
+  #splitMenuList(menuList) {
     return menuList.split(',').map((menu) => menu.split('-').map((item) => item.trim()));
   }
 }
