@@ -12,7 +12,7 @@ const Validator = {
     const counts = menuList.map((menu) => Number(menu[1]));
     const countSum = counts.reduce((sum, count) => sum + count, 0);
 
-    this.checkIsNumber(counts);
+    this.checkIsAllInteger(counts);
     this.checkIsNameInMenu(names);
     this.checkIsValidCount(counts);
     this.checkIsValidTotalCount(countSum);
@@ -21,13 +21,18 @@ const Validator = {
   },
 
   checkIsValidDate(date) {
-    if (Number(date) < PERIOD.promotion.start || Number(date) > PERIOD.promotion.end) {
+    const numericDate = Number(date);
+    if (
+      Number.isNaN(numericDate) ||
+      numericDate < PERIOD.promotion.start ||
+      numericDate > PERIOD.promotion.end
+    ) {
       throw new ValidationError(ERROR.invalidDate);
     }
   },
 
   checkIsInteger(number) {
-    if (!Number.isInteger(Number(number))) {
+    if (this.isInteger(number)) {
       throw new ValidationError(ERROR.invalidDate);
     }
   },
@@ -60,9 +65,9 @@ const Validator = {
     }
   },
 
-  checkIsNumber(counts) {
+  checkIsAllInteger(counts) {
     counts.forEach((count) => {
-      if (Number.isNaN(Number(count)) || count === '') {
+      if (this.isInteger(count)) {
         throw new ValidationError(ERROR.invalidMenu);
       }
     });
@@ -80,6 +85,8 @@ const Validator = {
       throw new ValidationError(ERROR.invalidMenu);
     }
   },
+
+  isInteger: (number) => !Number.isInteger(Number(number)) && number !== '',
 };
 
 export default Validator;
