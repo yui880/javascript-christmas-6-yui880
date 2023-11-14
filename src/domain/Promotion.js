@@ -7,9 +7,9 @@ class Promotion {
 
   #gift;
 
-  constructor() {
-    this.#discount = new Discount();
-    this.#gift = new Gift();
+  constructor(discount = new Discount(), gift = new Gift()) {
+    this.#discount = discount;
+    this.#gift = gift;
   }
 
   conductEvent(product, day) {
