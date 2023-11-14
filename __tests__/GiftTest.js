@@ -20,35 +20,35 @@ describe('Gift 클래스 테스트 - 다른 클래스 메서드 mock으로 대�
   test.each([
     { isPriceLessThan: true, giftCount: 0 },
     { isPriceLessThan: false, giftCount: 1 },
-  ])('총 주문 금액에 따른 증정 이벤트 적용 여부 테스트', ({ isPriceLessThan, giftCount }) => {
-    // given
-    const productMock = getCustomProductMock({ isPriceLessThan });
-    gift.apply(productMock);
-
-    // when
-    const result = gift.getCount();
-
-    // then
-    expect(result).toBe(giftCount);
-  });
-
-  test.each([
-    { isPriceLessThan: true, isEmpty: true },
-    { isPriceLessThan: false, isEmpty: false },
   ])(
-    '총 주문 금액에 따라 증정이 되는지 아닌지 확인하는 기능 테스트',
-    ({ isPriceLessThan, isEmpty }) => {
+    '주문 금액이 최소 금액을 넘었는지 여부에 따른 증정 이벤트 적용 테스트',
+    ({ isPriceLessThan, giftCount }) => {
       // given
       const productMock = getCustomProductMock({ isPriceLessThan });
       gift.apply(productMock);
 
       // when
-      const result = gift.isEmpty();
+      const result = gift.getCount();
 
       // then
-      expect(result).toBe(isEmpty);
+      expect(result).toBe(giftCount);
     },
   );
+
+  test.each([
+    { isPriceLessThan: true, isEmpty: true },
+    { isPriceLessThan: false, isEmpty: false },
+  ])('증정 이벤트가 적용되었는지 확인하는 기능 테스트', ({ isPriceLessThan, isEmpty }) => {
+    // given
+    const productMock = getCustomProductMock({ isPriceLessThan });
+    gift.apply(productMock);
+
+    // when
+    const result = gift.isEmpty();
+
+    // then
+    expect(result).toBe(isEmpty);
+  });
 });
 
 describe('Gift 클래스 테스트 - 다른 클래스 이용해서 테스트', () => {
@@ -72,7 +72,7 @@ describe('Gift 클래스 테스트 - 다른 클래스 이용해서 테스트', (
       giftCount: 1,
     },
   ])(
-    `금액이 ${DISCOUNT_STANDARD.minimumForGift} 이상일 때 증정 이벤트가 잘 적용되는지 테스트`,
+    `금액이 ${DISCOUNT_STANDARD.minimumForGift} 이상일 때 증정 이벤트가 적용되는지 테스트`,
     ({ product, giftCount }) => {
       // given
       gift.apply(product);
