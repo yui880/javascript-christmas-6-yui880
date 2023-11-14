@@ -2,9 +2,11 @@ import Product from './domain/Product.js';
 import Promotion from './domain/Promotion.js';
 import OutputView from './OutputView.js';
 import InputView from './InputView.js';
-import Validator from './Validator.js';
+import Day from './domain/Day.js';
 
 class EventPlanner {
+  #day;
+
   #product;
 
   #promotion;
@@ -19,7 +21,7 @@ class EventPlanner {
     const menu = await this.handleException(() => this.#getMenu());
 
     this.#printBeforeEvent(visitDate, menu);
-    this.#promotion.conductEvent(this.#product, visitDate);
+    this.#promotion.conductEvent(this.#product, this.#day);
     this.#printAfterEvent();
   }
 
@@ -52,8 +54,8 @@ class EventPlanner {
 
   async #getVisitDate() {
     const visitDate = await InputView.readDate();
-    Validator.validateDate(visitDate);
 
+    this.#day = new Day(visitDate);
     return visitDate;
   }
 

@@ -1,4 +1,4 @@
-import { DISCOUNT_EVENT, DISCOUNT_STANDARD, PERIOD, SPECIAL_DAY, WEEK } from '../constant.js';
+import { DISCOUNT_EVENT, DISCOUNT_STANDARD } from '../constant.js';
 
 class Discount {
   #amountList = {};
@@ -16,44 +16,38 @@ class Discount {
   apply(product, day) {
     if (product.isPriceLessThan(DISCOUNT_STANDARD.minimum)) return;
 
-    const dayOfWeek = this.getDayOfWeek(day);
-
-    this.#applyChristmasEvent(day);
-    this.#applyWeekDayEvent(product.getCountByCategory('dessert'), dayOfWeek);
-    this.#applyWeekendEvent(product.getCountByCategory('main'), dayOfWeek);
-    this.#applySpecialEvent(day);
+    this.#applyChristmasEvent(day.isChristmasDay(), day.getChristmasDiscountAmount());
+    this.#applyWeekdayEvent(product.getCountByCategory('dessert'), day.isWeekday());
+    this.#applyWeekendEvent(product.getCountByCategory('main'), day.isWeekend());
+    this.#applySpecialEvent(day.isSpecialDay());
   }
 
-  #applyChristmasEvent(day) {
-    if (day >= PERIOD.christmas.start && day <= PERIOD.christmas.end) {
-      this.#amountList.christmas += DISCOUNT_STANDARD.base + DISCOUNT_STANDARD.addition * (day - 1);
+  #applyChristmasEvent(isChristmasDay, christmasDiscountAmount) {
+    if (isChristmasDay) {
+      this.#amountList.christmas += christmasDiscountAmount;
     }
   }
 
-  #applyWeekDayEvent(dessertCount, dayOfWeek) {
-    if (dayOfWeek >= WEEK.sunday && dayOfWeek <= WEEK.thursday && dessertCount > 0) {
+  #applyWeekdayEvent(dessertCount, isWeekday) {
+    if (isWeekday && dessertCount > 0) {
       this.#amountList.weekday += DISCOUNT_STANDARD.week * dessertCount;
     }
   }
 
-  #applyWeekendEvent(mainCount, dayOfWeek) {
-    if (mainCount > 0 && (dayOfWeek === WEEK.friday || dayOfWeek === WEEK.saturday)) {
+  #applyWeekendEvent(mainCount, isWeekend) {
+    if (mainCount > 0 && isWeekend) {
       this.#amountList.weekend += DISCOUNT_STANDARD.week * mainCount;
     }
   }
 
-  #applySpecialEvent(day) {
-    if (SPECIAL_DAY.includes(Number(day))) {
-      this.#amountList.special += 1000;
+  #applySpecialEvent(isSpecialDay) {
+    if (isSpecialDay) {
+      this.#amountList.special += DISCOUNT_STANDARD.base;
     }
   }
 
   isEmpty() {
     return this.getAmount() === 0;
-  }
-
-  getDayOfWeek(day) {
-    return new Date(PERIOD.eventDate(day)).getDay();
   }
 
   getAmountByEvent() {
