@@ -1,5 +1,5 @@
 import Product from '../src/domain/Product.js';
-import { CATEGORY } from '../src/constant.js';
+import { CATEGORY, ERROR, RANGE } from '../src/constant.js';
 
 describe('Product 클래스 테스트', () => {
   let product;
@@ -117,4 +117,203 @@ describe('Product 클래스 테스트', () => {
       expect(result).toBe(isPriceLessThan);
     },
   );
+});
+
+describe('Product 클래스 검증 테스트', () => {
+  test.each([
+    [
+      [
+        ['라면', 2],
+        ['타파스', 1],
+      ],
+    ],
+    [[['특제타파스', 2]]],
+  ])('메뉴판에 있지 않은 음식의 이름이 입력되면 예외가 발생한다.', (menu) => {
+    // when / then
+    expect(() => {
+      new Product(menu);
+    }).toThrow(ERROR.invalidMenu);
+  });
+
+  test.each([
+    [
+      [
+        ['아이스크림', 1],
+        ['양송이수프', 1],
+      ],
+    ],
+    [[['타파스', 2]]],
+  ])('메뉴판에 있는 음식의 이름이 입력되면 예외가 발생하지 않는다.', (menu) => {
+    // when / then
+    expect(() => {
+      new Product(menu);
+    }).not.toThrow(ERROR.invalidMenu);
+  });
+
+  test.each([
+    [[['아이스크림', '5개 주세요!']]],
+    [[['타파스', 'five']]],
+    [[['초코케이크', '1,000']]],
+  ])('주문한 메뉴의 수량이 숫자가 아니면 예외가 발생한다.', (menu) => {
+    // when / then
+    expect(() => {
+      new Product(menu);
+    }).toThrow(ERROR.invalidMenu);
+  });
+
+  test.each([
+    [[['아이스크림', RANGE.minLen - 1]]],
+    [[['타파스', -12]]],
+    [[['초코케이크', RANGE.maxLen + 1]]],
+  ])(
+    `주문한 메뉴의 각 수량이 ${RANGE.minLen} 이상 ${RANGE.maxLen} 이하의 숫자가 아니면 예외가 발생한다.`,
+    (menu) => {
+      // when / then
+      expect(() => {
+        new Product(menu);
+      }).toThrow(ERROR.invalidMenu);
+    },
+  );
+
+  test.each([
+    [[['아이스크림', RANGE.minLen]]],
+    [
+      [
+        ['티본스테이크', 12],
+        ['제로콜라', 7],
+      ],
+    ],
+    [[['초코케이크', RANGE.maxLen]]],
+  ])(
+    `주문한 메뉴의 각 수량이 ${RANGE.minLen} 이상 ${RANGE.maxLen} 이하의 숫자면 예외가 발생하지 않는다.`,
+    (menu) => {
+      // when / then
+      expect(() => {
+        new Product(menu);
+      }).not.toThrow(ERROR.invalidMenu);
+    },
+  );
+
+  test.each([
+    [
+      [
+        ['아이스크림', RANGE.maxLen],
+        ['티본스테이크', 1],
+      ],
+    ],
+    [
+      [
+        ['초코케이크', 3],
+        ['레드와인', 19],
+      ],
+    ],
+  ])(
+    `주문한 메뉴의 총 수량이 ${RANGE.minLen}개 이상 ${RANGE.maxLen}개 이하가 아니면 예외가 발생한다.`,
+    (menu) => {
+      // when / then
+      expect(() => {
+        new Product(menu);
+      }).toThrow(ERROR.invalidMenu);
+    },
+  );
+
+  test.each([
+    [
+      [
+        ['아이스크림', 1],
+        ['티본스테이크', 1],
+      ],
+    ],
+    [
+      [
+        ['초코케이크', 3],
+        ['레드와인', 17],
+      ],
+    ],
+  ])(
+    `주문한 메뉴의 총 수량이 ${RANGE.minLen}개 이상 ${RANGE.maxLen}개 이하면 예외가 발생하지 않는다.`,
+    (menu) => {
+      // when / then
+      expect(() => {
+        new Product(menu);
+      }).not.toThrow(ERROR.invalidMenu);
+    },
+  );
+
+  test.each([
+    [[['제로콜라', 3]]],
+    [
+      [
+        ['레드와인', 2],
+        ['샴페인', 3],
+      ],
+    ],
+  ])('음료만 주문시 예외가 발생한다.', (menu) => {
+    // when / then
+    expect(() => {
+      new Product(menu);
+    }).toThrow(ERROR.invalidMenu);
+  });
+
+  test.each([
+    [
+      [
+        ['제로콜라', 3],
+        ['타파스', 2],
+      ],
+    ],
+    [
+      [
+        ['해산물파스타', 1],
+        ['레드와인', 2],
+        ['샴페인', 3],
+      ],
+    ],
+  ])('음료와 다른 메뉴를 같이 주문시 예외가 발생하지 않는다.', (menu) => {
+    // when / then
+    expect(() => {
+      new Product(menu);
+    }).not.toThrow(ERROR.invalidMenu);
+  });
+
+  test.each([
+    [
+      [
+        ['타파스', 3],
+        ['타파스', 2],
+      ],
+    ],
+    [
+      [
+        ['해산물파스타', 1],
+        ['레드와인', 2],
+        ['해산물파스타', 1],
+      ],
+    ],
+  ])('중복된 메뉴를 주문하는 경우 예외가 발생한다.', (menu) => {
+    // when / then
+    expect(() => {
+      new Product(menu);
+    }).toThrow(ERROR.invalidMenu);
+  });
+
+  test.each([
+    [
+      [
+        ['타파스', 1],
+        ['양송이수프', 7],
+      ],
+    ],
+    [
+      [
+        ['해산물파스타', 1],
+        ['레드와인', 2],
+      ],
+    ],
+  ])('중복되지 않은 메뉴를 주문하는 경우 예외가 발생하지 않는다.', (menu) => {
+    // when / then
+    expect(() => {
+      new Product(menu);
+    }).not.toThrow(ERROR.invalidMenu);
+  });
 });

@@ -18,7 +18,8 @@ const Validator = {
 
     this.checkIsNumber(counts);
     this.checkIsNameInMenu(names);
-    this.checkIsValidCount(countSum);
+    this.checkIsValidCount(counts);
+    this.checkIsValidTotalCount(countSum);
     this.checkHasDuplicate(names);
     this.checkHasDrinkOnly(menuList, countSum);
   },
@@ -26,12 +27,20 @@ const Validator = {
   checkIsNameInMenu(names) {
     names.forEach((name) => {
       if (!ALL_MENU_NAME.includes(name)) {
-        throw new ValidationError(ERROR.invalidDate);
+        throw new ValidationError(ERROR.invalidMenu);
       }
     });
   },
 
-  checkIsValidCount(countSum) {
+  checkIsValidCount(counts) {
+    counts.forEach((count) => {
+      if (count < RANGE.minLen || count > RANGE.maxLen) {
+        throw new ValidationError(ERROR.invalidMenu);
+      }
+    });
+  },
+
+  checkIsValidTotalCount(countSum) {
     if (countSum < RANGE.minLen || countSum > RANGE.maxLen) {
       throw new ValidationError(ERROR.invalidMenu);
     }
