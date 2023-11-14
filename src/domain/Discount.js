@@ -19,8 +19,8 @@ class Discount {
     const dayOfWeek = this.getDayOfWeek(day);
 
     this.#applyChristmasEvent(day);
-    this.#applyWeekDayEvent(product.getDessertOrderCount(), dayOfWeek);
-    this.#applyWeekendEvent(product.getMainOrderCount(), dayOfWeek);
+    this.#applyWeekDayEvent(product.getCountByCategory('dessert'), dayOfWeek);
+    this.#applyWeekendEvent(product.getCountByCategory('main'), dayOfWeek);
     this.#applySpecialEvent(day);
   }
 

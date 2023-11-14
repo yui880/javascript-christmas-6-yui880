@@ -2,14 +2,12 @@ import { CATEGORY, MENU_NAME, MENU_PRICE } from '../constant.js';
 import Validator from '../Validator.js';
 
 class Product {
-  #price;
+  #price = 0;
 
   #quantity = {};
 
   constructor(menu) {
-    this.#price = 0;
-    Validator.validateMenu(menu);
-
+    this.#validateMenu(menu);
     this.#initQuantity();
     this.purchase(menu);
   }
@@ -18,6 +16,10 @@ class Product {
     CATEGORY.forEach((categoryName) => {
       this.#quantity[categoryName] = new Array(MENU_NAME[categoryName].length).fill(0);
     });
+  }
+
+  #validateMenu(menu) {
+    Validator.validateMenu(menu);
   }
 
   purchase(orderedItem) {
@@ -37,12 +39,8 @@ class Product {
     }
   }
 
-  getDessertOrderCount() {
-    return this.#quantity.dessert.reduce((sum, cnt) => sum + cnt, 0);
-  }
-
-  getMainOrderCount() {
-    return this.#quantity.main.reduce((sum, cnt) => sum + cnt, 0);
+  getCountByCategory(category) {
+    return this.#quantity[category].reduce((sum, cnt) => sum + cnt, 0);
   }
 
   isPriceLessThan(number) {
@@ -53,5 +51,9 @@ class Product {
     return this.#price;
   }
 }
+//
+// const product = new Product([['초코케이크', 2]]);
+// MissionUtils.Console.print(product.getCountByCategory('dessert'));
+// MissionUtils.Console.print(product.getDessertOrderCount());
 
 export default Product;

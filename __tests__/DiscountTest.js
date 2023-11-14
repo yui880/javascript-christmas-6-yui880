@@ -8,8 +8,15 @@ const getCustomProductMock = ({
   mainOrderCount = 0,
 }) => ({
   isPriceLessThan: jest.fn(() => isPriceLessThan),
-  getDessertOrderCount: jest.fn(() => dessertOrderCount),
-  getMainOrderCount: jest.fn(() => mainOrderCount),
+  getCountByCategory: jest.fn((category) => {
+    if (category === 'dessert') {
+      return dessertOrderCount;
+    }
+    if (category === 'main') {
+      return mainOrderCount;
+    }
+    return 0;
+  }),
 });
 
 describe('Discount 클래스 테스트', () => {
