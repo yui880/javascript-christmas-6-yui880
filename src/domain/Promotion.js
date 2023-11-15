@@ -2,6 +2,7 @@ import Discount from './Discount.js';
 import Gift from './Gift.js';
 import { BADGE } from '../constants/event.js';
 import { COUNT_UNIT } from '../constants/message.js';
+import { DISCOUNT_STANDARD } from '../constants/constant.js';
 
 class Promotion {
   #discount;
@@ -14,6 +15,8 @@ class Promotion {
   }
 
   conductEvent(product, day) {
+    if (product.isPriceLessThan(DISCOUNT_STANDARD.minimum)) return;
+
     this.#discount.apply(product, day);
     this.#gift.apply(product);
   }

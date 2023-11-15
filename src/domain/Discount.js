@@ -15,8 +15,6 @@ class Discount {
   }
 
   apply(product, day) {
-    if (product.isPriceLessThan(DISCOUNT_STANDARD.minimum)) return;
-
     this.#applyChristmasEvent(day.isChristmasDay(), day.getChristmasDiscountAmount());
     this.#applyWeekdayEvent(product.getCountByCategory('dessert'), day.isWeekday());
     this.#applyWeekendEvent(product.getCountByCategory('main'), day.isWeekend());

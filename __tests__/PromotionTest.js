@@ -3,6 +3,7 @@ import Product from '../src/domain/Product.js';
 import Day from '../src/domain/Day.js';
 import { BADGE } from '../src/constants/event.js';
 import { COUNT_UNIT } from '../src/constants/message.js';
+import { DISCOUNT_STANDARD } from '../src/constants/constant.js';
 
 const getDiscountMock = ({ isEmpty = false, getAmountByEvent = 0, getAmount = 0 }) => ({
   isEmpty: jest.fn(() => isEmpty),
@@ -69,7 +70,9 @@ describe('Promotion 클래스 테스트 - 다른 클래스 mock으로 대체', (
   test.each([
     { totalBenefit: BADGE.star.amount - 1, badge: COUNT_UNIT.empty },
     { totalBenefit: BADGE.star.amount, badge: BADGE.star.name },
+    { totalBenefit: BADGE.tree.amount - 1, badge: BADGE.star.name },
     { totalBenefit: BADGE.tree.amount, badge: BADGE.tree.name },
+    { totalBenefit: BADGE.santa.amount - 1, badge: BADGE.tree.name },
     { totalBenefit: BADGE.santa.amount, badge: BADGE.santa.name },
     { totalBenefit: BADGE.santa.amount + 1, badge: BADGE.santa.name },
   ])('할인 금액을 바탕으로 배지를 구하는 기능 테스트', ({ totalBenefit, badge }) => {
@@ -86,6 +89,33 @@ describe('Promotion 클래스 테스트 - 다른 클래스 mock으로 대체', (
 });
 
 describe('Promotion 클래스 테스트 - 다른 클래스 사용해서 테스트', () => {
+  test.each([
+    {
+      menu: [['아이스크림', 1]],
+      output: [0, 0, 0, 0, 0],
+    },
+    {
+      menu: [
+        ['양송이수프', 1],
+        ['제로콜라', 1],
+      ],
+      output: [0, 0, 0, 0, 0],
+    },
+  ])(
+    `총 가격이 ${DISCOUNT_STANDARD.minimum}을 넘지 않으면 이벤트가 적용되지 않는지 테스트`,
+    ({ menu, output }) => {
+      // given
+      const promotion = new Promotion();
+      promotion.conductEvent(new Product(menu), new Day(1));
+
+      // when
+      const result = promotion.getEventBenefitList();
+
+      // then
+      expect(result).toEqual(output);
+    },
+  );
+
   test.each([
     {
       menu: [

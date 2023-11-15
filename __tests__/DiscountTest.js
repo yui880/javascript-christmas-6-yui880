@@ -297,30 +297,4 @@ describe('Discount 할인 이벤트 테스트', () => {
       expect(result).toEqual(output);
     },
   );
-
-  test.each([
-    {
-      product: new Product([['아이스크림', 1]]), //
-      output: [0, 0, 0, 0],
-    },
-    {
-      product: new Product([
-        ['양송이수프', 1],
-        ['제로콜라', 1],
-      ]),
-      output: [0, 0, 0, 0],
-    },
-  ])(
-    `총 가격이 ${DISCOUNT_STANDARD.minimum}을 넘지 않으면 이벤트가 적용되지 않는지 테스트`,
-    ({ product, output }) => {
-      // given
-      discount.apply(product, 1);
-
-      // when
-      const result = discount.getAmountByEvent();
-
-      // then
-      expect(result).toEqual(output);
-    },
-  );
 });

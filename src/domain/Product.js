@@ -51,9 +51,5 @@ class Product {
     return this.#price;
   }
 }
-//
-// const product = new Product([['초코케이크', 2]]);
-// MissionUtils.Console.print(product.getCountByCategory('dessert'));
-// MissionUtils.Console.print(product.getDessertOrderCount());
 
 export default Product;
