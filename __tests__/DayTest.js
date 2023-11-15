@@ -1,4 +1,5 @@
 import Day from '../src/domain/Day.js';
+import { ERROR } from '../src/constants/message.js';
 
 describe('Day 클래스 테스트', () => {
   let day;
@@ -134,6 +135,41 @@ describe('Day 클래스 테스트', () => {
 
       // then
       expect(result).toBe(discountAmount);
+    },
+  );
+});
+
+describe('Day 클래스 검증 테스트', () => {
+  test.each([[3.14], [0.99], [''], ['yuna']])(
+    '날짜가 정수가 아니면 예외가 발생한다.',
+    (dayNumber) => {
+      expect(() => {
+        new Day(dayNumber);
+      }).toThrow(ERROR.invalidDate);
+    },
+  );
+
+  test.each([[3], ['22'], [25]])('날짜가 정수면 예외가 발생하지 않는다.', (dayNumber) => {
+    expect(() => {
+      new Day(dayNumber);
+    }).not.toThrow(ERROR.invalidDate);
+  });
+
+  test.each([[0], [32], ['1000']])(
+    '날짜가 1-31 사이의 숫자가 아니면 예외가 발생한다.',
+    (dayNumber) => {
+      expect(() => {
+        new Day(dayNumber);
+      }).toThrow(ERROR.invalidDate);
+    },
+  );
+
+  test.each([[1], [31], [10]])(
+    '날짜가 1-31 사이의 숫자이면 예외가 발생하지 않는다.',
+    (dayNumber) => {
+      expect(() => {
+        new Day(dayNumber);
+      }).not.toThrow(ERROR.invalidDate);
     },
   );
 });
