@@ -1,7 +1,15 @@
-import { ERROR, PERIOD, RANGE } from '../src/constant.js';
-import Validator from '../src/Validator.js';
+import { PERIOD, RANGE } from '../src/constants/constant.js';
+import Validator from '../src/validator/Validator.js';
+import ValidationError from '../src/validator/ValidationError.js';
+import { ERROR } from '../src/constants/message.js';
 
 describe('Validator 검증 테스트', () => {
+  test(`예외 메세지는 ${ERROR.errorPrefix}로 시작해야한다.`, () => {
+    expect(() => {
+      throw new ValidationError();
+    }).toThrow(ERROR.errorPrefix);
+  });
+
   test.each([[1.2], ['3.14'], ['']])('입력값이 정수가 아니면 예외가 발생한다.', (input) => {
     expect(() => Validator.checkIsInteger(input)).toThrow(ERROR.invalidDate);
   });

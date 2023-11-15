@@ -1,5 +1,7 @@
-import { ALL_MENU_NAME, ERROR, MENU_NAME, PERIOD, RANGE } from './constant.js';
+import { PERIOD, RANGE } from '../constants/constant.js';
 import ValidationError from './ValidationError.js';
+import { ALL_MENU_NAME, MENU_NAME } from '../constants/menu.js';
+import { ERROR } from '../constants/message.js';
 
 const Validator = {
   validateDate(date) {

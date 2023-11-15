@@ -1,6 +1,7 @@
 import Discount from './Discount.js';
 import Gift from './Gift.js';
-import { BADGE, COUNT_UNIT } from '../constant.js';
+import { BADGE } from '../constants/event.js';
+import { COUNT_UNIT } from '../constants/message.js';
 
 class Promotion {
   #discount;

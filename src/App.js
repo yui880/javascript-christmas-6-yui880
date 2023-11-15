@@ -1,4 +1,4 @@
-import EventPlanner from './EventPlanner.js';
+import EventPlanner from './controller/EventPlanner.js';
 
 class App {
   #eventPlanner;

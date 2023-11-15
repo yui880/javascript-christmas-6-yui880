@@ -1,4 +1,4 @@
-import { DISCOUNT_STANDARD } from '../src/constant.js';
+import { DISCOUNT_STANDARD } from '../src/constants/constant.js';
 import Product from '../src/domain/Product.js';
 import Gift from '../src/domain/Gift.js';
 

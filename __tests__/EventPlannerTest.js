@@ -1,7 +1,7 @@
-import { Console, MissionUtils } from '@woowacourse/mission-utils';
+import { MissionUtils } from '@woowacourse/mission-utils';
 import { EOL as LINE_SEPARATOR } from 'os';
-import EventPlanner from '../src/EventPlanner.js';
-import { ERROR } from '../src/constant.js';
+import EventPlanner from '../src/controller/EventPlanner.js';
+import { ERROR } from '../src/constants/message.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();

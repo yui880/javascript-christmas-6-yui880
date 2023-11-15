@@ -1,5 +1,5 @@
-import Validator from '../Validator.js';
-import { DISCOUNT_STANDARD, PERIOD, SPECIAL_DAY, WEEK } from '../constant.js';
+import Validator from '../validator/Validator.js';
+import { DISCOUNT_STANDARD, PERIOD, SPECIAL_DAY, WEEK } from '../constants/constant.js';
 
 class Day {
   #dayNumber;

@@ -1,8 +1,8 @@
-import Product from './domain/Product.js';
-import Promotion from './domain/Promotion.js';
-import OutputView from './OutputView.js';
-import InputView from './InputView.js';
-import Day from './domain/Day.js';
+import Product from '../domain/Product.js';
+import Promotion from '../domain/Promotion.js';
+import OutputView from '../view/OutputView.js';
+import InputView from '../view/InputView.js';
+import Day from '../domain/Day.js';
 
 class EventPlanner {
   #day;

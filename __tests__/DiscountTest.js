@@ -1,7 +1,8 @@
 import Discount from '../src/domain/Discount.js';
-import { DISCOUNT_EVENT, DISCOUNT_STANDARD, PERIOD } from '../src/constant.js';
+import { DISCOUNT_STANDARD, PERIOD } from '../src/constants/constant.js';
 import Product from '../src/domain/Product.js';
 import Day from '../src/domain/Day.js';
+import { DISCOUNT_EVENT } from '../src/constants/event.js';
 
 const getCustomProductMock = ({
   isPriceLessThan = false,

@@ -1,5 +1,5 @@
-import { CATEGORY, MENU_NAME, MENU_PRICE } from '../constant.js';
-import Validator from '../Validator.js';
+import { CATEGORY, MENU_NAME, MENU_PRICE } from '../constants/menu.js';
+import Validator from '../validator/Validator.js';
 
 class Product {
   #price = 0;

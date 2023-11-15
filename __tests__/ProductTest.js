@@ -1,5 +1,7 @@
 import Product from '../src/domain/Product.js';
-import { CATEGORY, ERROR, RANGE } from '../src/constant.js';
+import { RANGE } from '../src/constants/constant.js';
+import { CATEGORY } from '../src/constants/menu.js';
+import { ERROR } from '../src/constants/message.js';
 
 describe('Product 클래스 테스트', () => {
   let product;

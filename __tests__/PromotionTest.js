@@ -1,7 +1,8 @@
 import Promotion from '../src/domain/Promotion.js';
-import { BADGE, COUNT_UNIT } from '../src/constant.js';
 import Product from '../src/domain/Product.js';
 import Day from '../src/domain/Day.js';
+import { BADGE } from '../src/constants/event.js';
+import { COUNT_UNIT } from '../src/constants/message.js';
 
 const getDiscountMock = ({ isEmpty = false, getAmountByEvent = 0, getAmount = 0 }) => ({
   isEmpty: jest.fn(() => isEmpty),

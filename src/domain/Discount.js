@@ -1,4 +1,5 @@
-import { DISCOUNT_EVENT, DISCOUNT_STANDARD } from '../constant.js';
+import { DISCOUNT_STANDARD } from '../constants/constant.js';
+import { DISCOUNT_EVENT } from '../constants/event.js';
 
 class Discount {
   #amountList = {};

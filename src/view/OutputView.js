@@ -1,5 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
-import { COUNT_UNIT, TITLE, GIFT_ITEM, REGEX, MESSAGE, EVENT_NAME } from './constant.js';
+import { GIFT_ITEM } from '../constants/menu.js';
+import { EVENT_NAME } from '../constants/event.js';
+import { COUNT_UNIT, MESSAGE, REGEX, TITLE } from '../constants/message.js';
 
 const OutputView = {
   printDescription() {

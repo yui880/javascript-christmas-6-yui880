@@ -1,4 +1,5 @@
-import { DISCOUNT_STANDARD, GIFT_ITEM } from '../constant.js';
+import { DISCOUNT_STANDARD } from '../constants/constant.js';
+import { GIFT_ITEM } from '../constants/menu.js';
 
 class Gift {
   #count;
