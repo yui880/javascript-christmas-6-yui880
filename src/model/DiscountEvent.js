@@ -47,7 +47,7 @@ class DiscountEvent {
   }
 
   getAmountList() {
-    return this.#amountList;
+    return Object.values(this.#amountList);
   }
 
   getTotalAmount() {

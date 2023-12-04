@@ -29,13 +29,20 @@ export const EVENT_PERIOD = Object.freeze({
 });
 
 export const DISCOUNT_EVENT = Object.freeze({
-  christmas: 'christmas',
-  weekday: 'weekday',
-  weekend: 'weekend',
-  special: 'special',
+  christmas: '크리스마스 디데이 할인',
+  weekday: '평일 할인',
+  weekend: '특별 할인',
+  special: '증정 이벤트',
+});
+export const DISCOUNT_NAME = Object.keys(DISCOUNT_EVENT);
+
+export const GIFT_EVENT = Object.freeze({
+  gift: '증정 이벤트',
 });
 
-export const DISCOUNT_NAME = Object.keys(DISCOUNT_EVENT);
+export const EVENT = { ...DISCOUNT_EVENT, ...GIFT_EVENT };
+
+export const EVENT_NAME = Object.values(EVENT);
 
 export const BADGE = Object.freeze({
   empty: { name: '없음', price: 0 },

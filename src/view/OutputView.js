@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { MESSAGE, TITLE, UNIT } from '../constant/message.js';
 import { GIFT_ITEM } from '../constant/menu.js';
+import { EVENT_NAME } from '../constant/event.js';
 
 const OutputView = {
   printWelcome() {
@@ -31,6 +32,20 @@ const OutputView = {
       return;
     }
     Console.print(`${GIFT_ITEM.name} ${giftCount}${UNIT.count}`);
+  },
+
+  printBenefitList(benefitList) {
+    Console.print(`\n${TITLE.benefitList}`);
+
+    if (benefitList.every((benefit) => benefit === 0)) {
+      Console.print(UNIT.empty);
+      return;
+    }
+
+    benefitList.forEach((benefit, index) => {
+      if (benefit <= 0) return;
+      Console.print(`${EVENT_NAME[index]}: ${(benefit * -1).toLocaleString('ko-KR')}${UNIT.price}`);
+    });
   },
 };
 
