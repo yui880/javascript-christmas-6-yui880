@@ -62,6 +62,10 @@ const OutputView = {
     Console.print(`\n${TITLE.badge}`);
     Console.print(badge);
   },
+
+  printError(message) {
+    Console.print(message);
+  },
 };
 
 export default OutputView;

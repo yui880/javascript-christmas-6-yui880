@@ -18,8 +18,8 @@ class EventPlannerController {
 
   async play() {
     OutputView.printWelcome();
-    const day = await this.#getVisitDay();
-    const menuList = await this.#getMenuList();
+    const day = await this.#handleException(() => this.#getVisitDay());
+    const menuList = await this.#handleException(() => this.#getMenuList());
 
     this.#printBeforeEvent(day, menuList);
     this.#promotion.conductEvent({
@@ -43,6 +43,16 @@ class EventPlannerController {
       this.#promotion.getExpectedPayment(this.#order.getTotalPrice()),
     );
     OutputView.printBadge(this.#promotion.getBadge());
+  }
+
+  async #handleException(callback) {
+    while (true) {
+      try {
+        return await callback();
+      } catch (error) {
+        OutputView.printError(error.message);
+      }
+    }
   }
 
   async #getVisitDay() {

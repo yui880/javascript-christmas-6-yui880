@@ -1,4 +1,6 @@
 import { CATEGORY, CATEGORY_NAME, MENU_NAME, MENU_PRICE } from '../constant/menu.js';
+import Validator from '../validator/Validator.js';
+import { ERROR } from '../constant/message.js';
 
 class Order {
   #menuList;
@@ -6,9 +8,19 @@ class Order {
   #totalPrice = 0;
 
   constructor(menu) {
+    this.#validateMenu(menu);
     this.#initMenuList();
     this.#countMenuByCategory(menu);
     this.#calculateTotalPrice(menu);
+  }
+
+  #validateMenu(menu) {
+    Validator.checkIsEmpty(menu, ERROR.menu);
+    Validator.checkAllInMenu(menu);
+    Validator.checkCountsInRange(menu);
+    Validator.checkTotalCountInRange(menu);
+    Validator.checkHasDuplicate(menu);
+    Validator.checkHasDrinkOnly(menu);
   }
 
   #initMenuList() {

@@ -6,7 +6,7 @@ import { RANGE } from '../constant/constant.js';
 
 const Validator = {
   checkIsEmpty(input, errorMessage) {
-    if (input.trim() === '') {
+    if (input === '') {
       throw new ValidationError(errorMessage);
     }
   },
