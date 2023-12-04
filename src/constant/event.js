@@ -2,6 +2,7 @@ export const EVENT_PRICE = Object.freeze({
   base: 1000,
   addition: 100,
   weekday: 2023,
+  weekend: 2023,
 });
 
 export const EVENT_PERIOD = Object.freeze({

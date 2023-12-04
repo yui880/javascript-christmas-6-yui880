@@ -1,4 +1,5 @@
-import { DISCOUNT_NAME } from '../constant/event.js';
+import { DISCOUNT_NAME, EVENT_PRICE } from '../constant/event.js';
+import { CATEGORY } from '../constant/menu.js';
 
 class DiscountEvent {
   #amountList;
@@ -28,6 +29,12 @@ class DiscountEvent {
   #applyWeekdayEvent(visitDate, dessertCount) {
     if (visitDate.isWeekday()) {
       this.#amountList.weekday = EVENT_PRICE.weekday * dessertCount;
+    }
+  }
+
+  #applyWeekendEvent(visitDate, mainCount) {
+    if (visitDate.isWeekend()) {
+      this.#amountList.weekend = EVENT_PRICE.weekend * mainCount;
     }
   }
 

@@ -22,6 +22,18 @@ class VisitDate {
     );
   }
 
+  isWeekday() {
+    return (
+      this.#dayOfWeek >= EVENT_PERIOD.weekday.start && this.#dayOfWeek <= EVENT_PERIOD.weekday.end
+    );
+  }
+
+  isWeekend() {
+    return (
+      this.#dayOfWeek >= EVENT_PERIOD.weekend.start && this.#dayOfWeek <= EVENT_PERIOD.weekend.end
+    );
+  }
+
   getChristmasDiscountAmount() {
     return EVENT_PRICE.base + EVENT_PRICE.addition * (this.#dayNumber - 1);
   }
