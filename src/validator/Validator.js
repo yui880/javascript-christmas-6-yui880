@@ -23,7 +23,7 @@ const Validator = {
     }
   },
 
-  checkAllInMenu(inputs) {
+  checkNamesInMenu(inputs) {
     inputs.forEach(([name, count]) => {
       if (!ALL_MENU_NAME.includes(name)) {
         throw new ValidationError(ERROR.menu);
