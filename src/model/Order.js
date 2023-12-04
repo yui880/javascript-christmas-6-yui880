@@ -1,4 +1,4 @@
-import { CATEGORY, CATEGORY_NAME, MENU, MENU_NAME, MENU_PRICE } from '../constant/menu.js';
+import { CATEGORY, CATEGORY_NAME, MENU_NAME, MENU_PRICE } from '../constant/menu.js';
 
 class Order {
   #menuList;
@@ -8,6 +8,7 @@ class Order {
   constructor(menu) {
     this.#initMenuList();
     this.#countMenuByCategory(menu);
+    this.#calculateTotalPrice(menu);
   }
 
   #initMenuList() {
@@ -21,7 +22,7 @@ class Order {
     menu.forEach(([name, count]) => {
       CATEGORY_NAME.forEach((category) => {
         if (MENU_NAME[category].includes(name)) {
-          this.#menuList[category] += count;
+          this.#menuList[category] += Number(count);
         }
       });
     });
@@ -37,6 +38,14 @@ class Order {
         }
       });
     });
+  }
+
+  getMenuList() {
+    return this.#menuList;
+  }
+
+  getTotalPrice() {
+    return this.#totalPrice;
   }
 }
 
