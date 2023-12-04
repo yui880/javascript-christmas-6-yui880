@@ -7,7 +7,7 @@ class VisitDate {
   #dayOfWeek;
 
   constructor(day) {
-    this.#dayNumber = day;
+    this.#dayNumber = Number(day);
     this.#dayOfWeek = this.#getDayOfWeek(day);
   }
 
