@@ -8,3 +8,18 @@ export const MESSAGE = Object.freeze({
   previewTitle: (day) =>
     `${DATE.eventMonth}월 ${day}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
 });
+
+export const TITLE = Object.freeze({
+  orderMenu: '<주문 메뉴>',
+  beforeDiscountPrice: '<할인 전 총주문 금액>',
+  giftMenu: '<증정 메뉴>',
+  benefitList: '<혜택 내역>',
+  totalBenefit: '<총혜택 금액>',
+  afterDiscountPrice: '<할인 후 예상 결제 금액>',
+  badge: '<12월 이벤트 배지>',
+});
+
+export const UNIT = Object.freeze({
+  count: '개',
+  price: '원',
+});

@@ -14,6 +14,7 @@ class EventPlannerController {
     const day = await this.#getVisitDay();
     const menuList = await this.#getMenuList();
     OutputView.printPreviewMessage(day);
+    OutputView.printMenuList(menuList);
   }
 
   async #getVisitDay() {

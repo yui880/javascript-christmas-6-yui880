@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { MESSAGE } from '../constant/message.js';
+import { MESSAGE, TITLE, UNIT } from '../constant/message.js';
 
 const OutputView = {
   printWelcome() {
@@ -8,6 +8,13 @@ const OutputView = {
 
   printPreviewMessage(day) {
     Console.print(MESSAGE.previewTitle(day));
+  },
+
+  printMenuList(menuList) {
+    Console.print(`\n${TITLE.orderMenu}`);
+    menuList.forEach(([name, count]) => {
+      Console.print(`${name} ${count}${UNIT.count}`);
+    });
   },
 };
 
