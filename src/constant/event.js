@@ -4,8 +4,8 @@ export const EVENT_PRICE = Object.freeze({
   weekday: 2023,
   weekend: 2023,
   special: 1000,
-  giftLimit: 120_000,
-  eventLimit: 10_000,
+  minimumForGift: 120_000,
+  minimumForEvent: 10_000,
 });
 
 export const EVENT_PERIOD = Object.freeze({

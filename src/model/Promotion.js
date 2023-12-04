@@ -13,7 +13,7 @@ class Promotion {
   }
 
   conductEvent({ visitDate, order }) {
-    if (order.isTotalPriceLessThan(EVENT_PRICE.eventLimit)) return;
+    if (order.isTotalPriceLessThan(EVENT_PRICE.minimumForEvent)) return;
 
     this.#discountEvent.apply({ visitDate, order });
     this.#giftEvent.apply(order);
