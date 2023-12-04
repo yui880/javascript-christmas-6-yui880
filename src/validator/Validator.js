@@ -38,6 +38,14 @@ const Validator = {
       }
     });
   },
+
+  checkHasDuplicate(inputs) {
+    const menuNames = inputs.map(([name, count]) => name);
+
+    if (menuNames.length !== new Set(menuNames).size) {
+      throw new ValidationError(ERROR.menu);
+    }
+  },
 };
 
 export default Validator;
