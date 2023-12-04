@@ -38,6 +38,7 @@ class EventPlannerController {
   #printAfterEvent() {
     OutputView.printGiftMenu(this.#promotion.getGiftCount());
     OutputView.printBenefitList(this.#promotion.getBenefitList());
+    OutputView.printTotalBenefitPrice(this.#promotion.getTotalBenefitAmount());
   }
 
   async #getVisitDay() {

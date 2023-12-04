@@ -47,6 +47,11 @@ const OutputView = {
       Console.print(`${EVENT_NAME[index]}: ${(benefit * -1).toLocaleString('ko-KR')}${UNIT.price}`);
     });
   },
+
+  printTotalBenefitPrice(price) {
+    Console.print(`\n${TITLE.totalBenefit}`);
+    Console.print(`${(price * -1).toLocaleString('ko-KR')}${UNIT.price}`);
+  },
 };
 
 export default OutputView;
