@@ -57,6 +57,11 @@ const OutputView = {
     Console.print(`\n${TITLE.afterDiscountPrice}`);
     Console.print(`${price.toLocaleString('ko-KR')}${UNIT.price}`);
   },
+
+  printBadge(badge) {
+    Console.print(`\n${TITLE.badge}`);
+    Console.print(badge);
+  },
 };
 
 export default OutputView;

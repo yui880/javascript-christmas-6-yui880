@@ -42,6 +42,7 @@ class EventPlannerController {
     OutputView.printAfterDiscountPrice(
       this.#promotion.getExpectedPayment(this.#order.getTotalPrice()),
     );
+    OutputView.printBadge(this.#promotion.getBadge());
   }
 
   async #getVisitDay() {
