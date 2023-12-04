@@ -24,3 +24,7 @@ export const UNIT = Object.freeze({
   price: '원',
   empty: '없음',
 });
+
+export const ERROR = {
+  errorPrefix: '[ERROR]',
+};
