@@ -49,6 +49,10 @@ class DiscountEvent {
   getAmountList() {
     return this.#amountList;
   }
+
+  getTotalAmount() {
+    return Object.values(this.#amountList).reduce((sum, amount) => sum + amount, 0);
+  }
 }
 
 export default DiscountEvent;

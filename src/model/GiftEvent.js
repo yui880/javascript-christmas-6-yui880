@@ -17,6 +17,10 @@ class GiftEvent {
       this.count += 1;
     }
   }
+
+  getAmount() {
+    return this.#amount;
+  }
 }
 
 export default GiftEvent;

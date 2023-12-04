@@ -18,6 +18,10 @@ class Promotion {
     this.#discountEvent.apply({ visitDate, order });
     this.#giftEvent.apply(order);
   }
+
+  getTotalBenefit() {
+    return this.#discountEvent.getTotalAmount() + this.#giftEvent.getAmount();
+  }
 }
 
 export default Promotion;
