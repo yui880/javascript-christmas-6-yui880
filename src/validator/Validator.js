@@ -31,12 +31,20 @@ const Validator = {
     });
   },
 
-  checkAreInCountRange(inputs) {
+  checkCountsInRange(inputs) {
     inputs.forEach(([name, count]) => {
       if (count < RANGE.count.min || count > RANGE.count.max) {
         throw new ValidationError(ERROR.menu);
       }
     });
+  },
+
+  checkTotalCountInRange(inputs) {
+    const totalCount = inputs.reduce((sum, [name, count]) => sum + count, 0);
+
+    if (totalCount < RANGE.count.min || totalCount > RANGE.count.max) {
+      throw new ValidationError(ERROR.menu);
+    }
   },
 
   checkHasDuplicate(inputs) {
