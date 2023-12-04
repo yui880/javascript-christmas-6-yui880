@@ -13,6 +13,16 @@ class DiscountEvent {
       return amountList;
     }, {});
   }
+
+  apply({ visitDate, order }) {
+    this.#applyChristmasEvent(visitDate);
+  }
+
+  #applyChristmasEvent(visitDate) {
+    if (visitDate.isChristmasDay()) {
+      this.#amountList.christmas = visitDate.getChristmasDiscountAmount();
+    }
+  }
 }
 
 export default DiscountEvent;

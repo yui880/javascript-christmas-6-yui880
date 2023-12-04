@@ -1,4 +1,5 @@
 import { DATE } from '../constant/constant.js';
+import { EVENT_PERIOD, EVENT_PRICE } from '../constant/event.js';
 
 class VisitDate {
   #dayNumber;
@@ -12,6 +13,17 @@ class VisitDate {
 
   #getDayOfWeek(day) {
     return new Date(DATE.eventDate(day)).getDay();
+  }
+
+  isChristmasDay() {
+    return (
+      this.#dayNumber >= EVENT_PERIOD.christmas.start &&
+      this.#dayNumber <= EVENT_PERIOD.christmas.end
+    );
+  }
+
+  getChristmasDiscountAmount() {
+    return EVENT_PRICE.base + EVENT_PRICE.addition * (this.#dayNumber - 1);
   }
 }
 
