@@ -1,6 +1,6 @@
 import DiscountEvent from './DiscountEvent.js';
 import GiftEvent from './GiftEvent.js';
-import { EVENT_PRICE } from '../constant/event.js';
+import { BADGE, EVENT_PRICE } from '../constant/event.js';
 
 class Promotion {
   #discountEvent;
@@ -17,6 +17,15 @@ class Promotion {
 
     this.#discountEvent.apply({ visitDate, order });
     this.#giftEvent.apply(order);
+  }
+
+  getBadge() {
+    const totalBenefit = this.getTotalBenefitAmount();
+
+    if (totalBenefit < BADGE.star.price) return BADGE.empty.name;
+    if (totalBenefit < BADGE.tree.price) return BADGE.star.name;
+    if (totalBenefit < BADGE.santa.price) return BADGE.tree.name;
+    return BADGE.santa.name;
   }
 
   getTotalBenefitAmount() {

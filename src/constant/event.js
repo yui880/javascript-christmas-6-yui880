@@ -36,3 +36,10 @@ export const DISCOUNT_EVENT = Object.freeze({
 });
 
 export const DISCOUNT_NAME = Object.keys(DISCOUNT_EVENT);
+
+export const BADGE = Object.freeze({
+  empty: { name: '없음', price: 0 },
+  star: { name: '별', price: 5_000 },
+  tree: { name: '트리', price: 10_000 },
+  santa: { name: '산타', price: 20_000 },
+});
