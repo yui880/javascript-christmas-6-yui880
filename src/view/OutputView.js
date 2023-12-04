@@ -52,6 +52,11 @@ const OutputView = {
     Console.print(`\n${TITLE.totalBenefit}`);
     Console.print(`${(price * -1).toLocaleString('ko-KR')}${UNIT.price}`);
   },
+
+  printAfterDiscountPrice(price) {
+    Console.print(`\n${TITLE.afterDiscountPrice}`);
+    Console.print(`${price.toLocaleString('ko-KR')}${UNIT.price}`);
+  },
 };
 
 export default OutputView;
