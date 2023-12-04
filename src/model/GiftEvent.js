@@ -12,14 +12,18 @@ class GiftEvent {
   }
 
   apply(order) {
-    if (!order.isTotalPriceLessThan(EVENT_PRICE.minimumForGift)) {
-      this.#amount = GIFT_ITEM.price;
-      this.count += 1;
-    }
+    if (order.isTotalPriceLessThan(EVENT_PRICE.minimumForGift)) return;
+
+    this.#amount += GIFT_ITEM.price;
+    this.#count += 1;
   }
 
   getAmount() {
     return this.#amount;
+  }
+
+  getCount() {
+    return this.#count;
   }
 }
 

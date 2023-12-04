@@ -22,4 +22,5 @@ export const TITLE = Object.freeze({
 export const UNIT = Object.freeze({
   count: '개',
   price: '원',
+  empty: '없음',
 });

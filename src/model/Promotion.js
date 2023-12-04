@@ -28,6 +28,10 @@ class Promotion {
     return BADGE.santa.name;
   }
 
+  getGiftCount() {
+    return this.#giftEvent.getCount();
+  }
+
   getTotalBenefitAmount() {
     return this.#discountEvent.getTotalAmount() + this.#giftEvent.getAmount();
   }

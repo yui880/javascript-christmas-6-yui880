@@ -26,12 +26,17 @@ class EventPlannerController {
       visitDate: this.#visitDate,
       order: this.#order,
     });
+    this.#printAfterEvent();
   }
 
   #printBeforeEvent(day, menuList) {
     OutputView.printPreviewMessage(day);
     OutputView.printMenuList(menuList);
     OutputView.printBeforeDiscountPrice(this.#order.getTotalPrice());
+  }
+
+  #printAfterEvent() {
+    OutputView.printGiftMenu(this.#promotion.getGiftCount());
   }
 
   async #getVisitDay() {

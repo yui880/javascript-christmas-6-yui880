@@ -8,7 +8,7 @@ export const CATEGORY = Object.freeze({
 export const CATEGORY_NAME = Object.keys(CATEGORY);
 
 export const GIFT_ITEM = Object.freeze({
-  name: '샴페인,',
+  name: '샴페인',
   price: 25_000,
 });
 
