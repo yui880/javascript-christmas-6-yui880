@@ -1,7 +1,7 @@
 import { ERROR } from '../constant/message.js';
 import ValidationError from './ValidationError.js';
 import { EVENT_PERIOD } from '../constant/event.js';
-import { ALL_MENU_NAME } from '../constant/menu.js';
+import { ALL_MENU_NAME, MENU_NAME } from '../constant/menu.js';
 import { RANGE } from '../constant/constant.js';
 
 const Validator = {
@@ -51,6 +51,14 @@ const Validator = {
     const menuNames = inputs.map(([name, count]) => name);
 
     if (menuNames.length !== new Set(menuNames).size) {
+      throw new ValidationError(ERROR.menu);
+    }
+  },
+
+  checkHasDrinkOnly(inputs) {
+    const menuNames = inputs.map(([name, count]) => name);
+
+    if (menuNames.every((menu) => MENU_NAME.drink.includes(menu))) {
       throw new ValidationError(ERROR.menu);
     }
   },
