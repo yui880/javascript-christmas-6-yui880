@@ -5,6 +5,7 @@ export const EVENT_PRICE = Object.freeze({
   weekend: 2023,
   special: 1000,
   giftLimit: 120_000,
+  eventLimit: 10_000,
 });
 
 export const EVENT_PERIOD = Object.freeze({
