@@ -16,12 +16,23 @@ class DiscountEvent {
 
   apply({ visitDate, order }) {
     this.#applyChristmasEvent(visitDate);
+    this.#applyWeekdayEvent(visitDate, order.getCountByCategory(CATEGORY.dessert));
   }
 
   #applyChristmasEvent(visitDate) {
     if (visitDate.isChristmasDay()) {
       this.#amountList.christmas = visitDate.getChristmasDiscountAmount();
     }
+  }
+
+  #applyWeekdayEvent(visitDate, dessertCount) {
+    if (visitDate.isWeekday()) {
+      this.#amountList.weekday = EVENT_PRICE.weekday * dessertCount;
+    }
+  }
+
+  getAmountList() {
+    return this.#amountList;
   }
 }
 

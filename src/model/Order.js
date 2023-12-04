@@ -40,6 +40,10 @@ class Order {
     });
   }
 
+  getCountByCategory(category) {
+    return this.#menuList[category];
+  }
+
   getMenuList() {
     return this.#menuList;
   }
