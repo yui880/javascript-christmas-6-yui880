@@ -1,5 +1,7 @@
 import { DATE } from '../constant/constant.js';
 import { EVENT_PERIOD, EVENT_PRICE } from '../constant/event.js';
+import Validator from '../validator/Validator.js';
+import { ERROR } from '../constant/message.js';
 
 class VisitDate {
   #dayNumber;
@@ -7,8 +9,15 @@ class VisitDate {
   #dayOfWeek;
 
   constructor(day) {
+    this.#validateVisitDate(day);
     this.#dayNumber = Number(day);
     this.#dayOfWeek = this.#getDayOfWeek(day);
+  }
+
+  #validateVisitDate(day) {
+    Validator.checkIsEmpty(day, ERROR.date);
+    Validator.checkIsInteger(day);
+    Validator.checkIsInEventPeriod(day);
   }
 
   #getDayOfWeek(day) {
