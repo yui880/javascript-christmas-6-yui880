@@ -55,7 +55,7 @@ describe('클래스 테스트', () => {
       ];
 
       const errorCount = logSpy.mock.calls.filter(([logMessage]) =>
-        logMessage.includes(ERROR.date),
+        logMessage.includes(ERROR.invalidDate),
       ).length;
 
       expect(errorCount).toBe(4);
@@ -94,7 +94,7 @@ describe('클래스 테스트', () => {
       ];
 
       const errorCount = logSpy.mock.calls.filter(([logMessage]) =>
-        logMessage.includes(ERROR.menu),
+        logMessage.includes(ERROR.invalidMenu),
       ).length;
 
       expect(errorCount).toBe(6);

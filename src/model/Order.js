@@ -15,7 +15,7 @@ class Order {
   }
 
   #validateMenu(menu) {
-    Validator.checkIsEmpty(menu, ERROR.menu);
+    Validator.checkIsEmpty(menu, ERROR.invalidMenu);
     Validator.checkNamesInMenu(menu);
     Validator.checkCountsInRange(menu);
     Validator.checkTotalCountInRange(menu);

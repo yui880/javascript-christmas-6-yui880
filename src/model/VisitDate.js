@@ -15,7 +15,7 @@ class VisitDate {
   }
 
   #validateVisitDate(day) {
-    Validator.checkIsEmpty(day, ERROR.date);
+    Validator.checkIsEmpty(day, ERROR.invalidDate);
     Validator.checkIsInteger(day);
     Validator.checkIsInEventPeriod(day);
   }

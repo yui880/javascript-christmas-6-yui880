@@ -13,20 +13,20 @@ const Validator = {
 
   checkIsInteger(input) {
     if (!Number.isInteger(Number(input))) {
-      throw new ValidationError(ERROR.date);
+      throw new ValidationError(ERROR.invalidDate);
     }
   },
 
   checkIsInEventPeriod(input) {
     if (Number(input) < EVENT_PERIOD.default.start || Number(input) > EVENT_PERIOD.default.end) {
-      throw new ValidationError(ERROR.date);
+      throw new ValidationError(ERROR.invalidDate);
     }
   },
 
   checkNamesInMenu(inputs) {
     inputs.forEach(([name, count]) => {
       if (!ALL_MENU_NAME.includes(name)) {
-        throw new ValidationError(ERROR.menu);
+        throw new ValidationError(ERROR.invalidMenu);
       }
     });
   },
@@ -34,7 +34,7 @@ const Validator = {
   checkCountsInRange(inputs) {
     inputs.forEach(([name, count]) => {
       if (count < RANGE.count.min || count > RANGE.count.max) {
-        throw new ValidationError(ERROR.menu);
+        throw new ValidationError(ERROR.invalidMenu);
       }
     });
   },
@@ -43,7 +43,7 @@ const Validator = {
     const totalCount = inputs.reduce((sum, [name, count]) => sum + count, 0);
 
     if (totalCount < RANGE.count.min || totalCount > RANGE.count.max) {
-      throw new ValidationError(ERROR.menu);
+      throw new ValidationError(ERROR.invalidMenu);
     }
   },
 
@@ -51,7 +51,7 @@ const Validator = {
     const menuNames = inputs.map(([name, count]) => name);
 
     if (menuNames.length !== new Set(menuNames).size) {
-      throw new ValidationError(ERROR.menu);
+      throw new ValidationError(ERROR.invalidMenu);
     }
   },
 
@@ -59,7 +59,7 @@ const Validator = {
     const menuNames = inputs.map(([name, count]) => name);
 
     if (menuNames.every((menu) => MENU_NAME.drink.includes(menu))) {
-      throw new ValidationError(ERROR.menu);
+      throw new ValidationError(ERROR.invalidMenu);
     }
   },
 };
