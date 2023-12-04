@@ -36,3 +36,10 @@ export const MENU_NAME = Object.freeze({
   [CATEGORY.dessert]: Object.values(CATEGORY.dessert).map((menu) => menu.name),
   [CATEGORY.drink]: Object.values(CATEGORY.drink).map((menu) => menu.name),
 });
+
+export const MENU_PRICE = Object.freeze({
+  [CATEGORY.appetizer]: Object.values(CATEGORY.appetizer).map((menu) => menu.price),
+  [CATEGORY.main]: Object.values(CATEGORY.main).map((menu) => menu.price),
+  [CATEGORY.dessert]: Object.values(CATEGORY.dessert).map((menu) => menu.price),
+  [CATEGORY.drink]: Object.values(CATEGORY.drink).map((menu) => menu.price),
+});
