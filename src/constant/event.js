@@ -3,6 +3,7 @@ export const EVENT_PRICE = Object.freeze({
   addition: 100,
   weekday: 2023,
   weekend: 2023,
+  special: 1000,
 });
 
 export const EVENT_PERIOD = Object.freeze({
@@ -22,6 +23,7 @@ export const EVENT_PERIOD = Object.freeze({
     start: 5,
     end: 6,
   },
+  special: [3, 10, 17, 24, 25, 31],
 });
 
 export const DISCOUNT_EVENT = Object.freeze({
