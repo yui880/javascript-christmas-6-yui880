@@ -16,6 +16,11 @@ const OutputView = {
       Console.print(`${name} ${count}${UNIT.count}`);
     });
   },
+
+  printBeforeDiscountPrice(price) {
+    Console.print(`\n${TITLE.beforeDiscountPrice}`);
+    Console.print(`${price.toLocaleString('ko-KR')}${UNIT.price}`);
+  },
 };
 
 export default OutputView;

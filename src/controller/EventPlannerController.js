@@ -3,18 +3,35 @@ import VisitDate from '../model/VisitDate.js';
 import { SEPARATOR } from '../constant/constant.js';
 import Order from '../model/Order.js';
 import OutputView from '../view/OutputView.js';
+import Promotion from '../model/Promotion.js';
 
 class EventPlannerController {
   #visitDate;
 
   #order;
 
+  #promotion;
+
+  constructor(promotion = new Promotion()) {
+    this.#promotion = promotion;
+  }
+
   async play() {
     OutputView.printWelcome();
     const day = await this.#getVisitDay();
     const menuList = await this.#getMenuList();
+
+    this.#printBeforeEvent(day, menuList);
+    this.#promotion.conductEvent({
+      visitDate: this.#visitDate,
+      order: this.#order,
+    });
+  }
+
+  #printBeforeEvent(day, menuList) {
     OutputView.printPreviewMessage(day);
     OutputView.printMenuList(menuList);
+    OutputView.printBeforeDiscountPrice(this.#order.getTotalPrice());
   }
 
   async #getVisitDay() {
