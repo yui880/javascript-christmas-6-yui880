@@ -2,6 +2,7 @@ import InputView from '../view/InputView.js';
 import VisitDate from '../model/VisitDate.js';
 import { SEPARATOR } from '../constant/constant.js';
 import Order from '../model/Order.js';
+import OutputView from '../view/OutputView.js';
 
 class EventPlannerController {
   #visitDate;
@@ -9,8 +10,10 @@ class EventPlannerController {
   #order;
 
   async play() {
+    OutputView.printWelcome();
     const day = await this.#getVisitDay();
     const menuList = await this.#getMenuList();
+    OutputView.printPreviewMessage(day);
   }
 
   async #getVisitDay() {
