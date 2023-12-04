@@ -48,3 +48,5 @@ export const MENU_PRICE = Object.freeze({
   [CATEGORY.dessert]: Object.values(MENU.dessert).map((menu) => menu.price),
   [CATEGORY.drink]: Object.values(MENU.drink).map((menu) => menu.price),
 });
+
+export const ALL_MENU_NAME = Object.values(MENU_NAME).flat();
