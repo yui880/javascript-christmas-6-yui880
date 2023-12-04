@@ -18,7 +18,7 @@ const Validator = {
   },
 
   checkIsInEventPeriod(input) {
-    if (Number(input) < EVENT_PERIOD.default.min || Number(input) > EVENT_PERIOD.default.max) {
+    if (Number(input) < EVENT_PERIOD.default.start || Number(input) > EVENT_PERIOD.default.end) {
       throw new ValidationError(ERROR.date);
     }
   },
