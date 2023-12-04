@@ -19,8 +19,12 @@ class Promotion {
     this.#giftEvent.apply(order);
   }
 
-  getTotalBenefit() {
+  getTotalBenefitAmount() {
     return this.#discountEvent.getTotalAmount() + this.#giftEvent.getAmount();
+  }
+
+  getExpectedPayment(totalPrice) {
+    return totalPrice - this.#discountEvent.getTotalAmount();
   }
 }
 
