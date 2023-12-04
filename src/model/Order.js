@@ -60,10 +60,6 @@ class Order {
     return this.#totalPrice < number;
   }
 
-  getMenuList() {
-    return this.#menuList;
-  }
-
   getTotalPrice() {
     return this.#totalPrice;
   }
