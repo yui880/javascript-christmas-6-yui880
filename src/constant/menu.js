@@ -7,6 +7,11 @@ export const CATEGORY = Object.freeze({
 
 export const CATEGORY_NAME = Object.keys(CATEGORY);
 
+export const GIFT_ITEM = Object.freeze({
+  name: '샴페인,',
+  price: 25_000,
+});
+
 export const MENU = Object.freeze({
   [CATEGORY.appetizer]: [
     { name: '양송이수프', price: 6_000 },
@@ -26,7 +31,7 @@ export const MENU = Object.freeze({
   [CATEGORY.drink]: [
     { name: '제로콜라', price: 3_000 },
     { name: '레드와인', price: 60_000 },
-    { name: '샴페인', price: 25_000 },
+    GIFT_ITEM,
   ],
 });
 

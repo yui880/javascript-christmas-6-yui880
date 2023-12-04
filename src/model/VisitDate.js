@@ -34,6 +34,10 @@ class VisitDate {
     );
   }
 
+  isSpecialDay() {
+    return EVENT_PERIOD.special.includes(this.#dayNumber);
+  }
+
   getChristmasDiscountAmount() {
     return EVENT_PRICE.base + EVENT_PRICE.addition * (this.#dayNumber - 1);
   }

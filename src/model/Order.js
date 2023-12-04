@@ -44,6 +44,10 @@ class Order {
     return this.#menuList[category];
   }
 
+  isTotalPriceLessThan(number) {
+    return this.#totalPrice < number;
+  }
+
   getMenuList() {
     return this.#menuList;
   }
