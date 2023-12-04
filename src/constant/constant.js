@@ -3,3 +3,8 @@ export const DATE = Object.freeze({
   eventMonth: 12,
   eventDate: (day) => `${DATE.eventYear}-${DATE.eventMonth}-${day}`,
 });
+
+export const SEPARATOR = Object.freeze({
+  item: ',',
+  count: '-',
+});

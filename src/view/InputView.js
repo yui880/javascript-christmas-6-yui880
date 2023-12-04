@@ -6,7 +6,7 @@ const InputView = {
     return await Console.readLineAsync(`${MESSAGE.enterVisitDate}\n`);
   },
 
-  async readMenu() {
+  async readMenus() {
     return await Console.readLineAsync(`${MESSAGE.enterMenu}\n`);
   },
 };
